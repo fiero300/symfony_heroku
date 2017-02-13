@@ -32,7 +32,7 @@
                 var strClave = $("#txt_clave").val();
 
                 visibilidadCmp("msg_error", 1);
-                if (strUsuario == '' || strUsuario.trim == '' || strUsuario == null)
+                if (strUsuario === '' || strUsuario.trim === '' || strUsuario === null)
                 {
                     setHtmlCmp("lbl_error", "ERROR! Usuario Inválido.");
                 }
@@ -76,7 +76,7 @@
 
                     var user = firebase.auth().currentUser;
 
-                    if (error == 0 && user)
+                    if (error === 0 && user)
                     {
                         cambiarClaseCmp("msg_error", "alertOk");
                         setHtmlCmp("lbl_error", "INFORME! Autenticación exitosa.");
@@ -90,16 +90,18 @@
                 var strUsuario = $("#txt_usuario").val();
                 var strClave = $("#txt_clave").val();
 
-                firebase.auth().createUserWithEmailAndPassword(strUsuario, strClave).catch(function (error)
+                visibilidadCmp("msg_error", 0);
+                var error = 0;
+
+                firebase.auth().createUserWithEmailAndPassword(strUsuario, strClave).catch(function (err)
                 {
-                    // Handle Errors here.
-                    var strCodigoError = error.code;
-                    var strMensajeError = error.message;
-                    cambiarClaseCmp("msg_error", "alert");
-                    error = 1;
                     visibilidadCmp("msg_error", 1);
-                    strCodigoError = err.code;
-                    strMensajeError = err.message;
+                    cambiarClaseCmp("msg_error", "alert");
+                    
+                    // Handle Errors here.
+                    var strCodigoError = err.code;
+                    var strMensajeError = err.message;
+                    error = 1;
 
                     console.log(strCodigoError);
                     console.log(strMensajeError);
@@ -126,7 +128,13 @@
                         setHtmlCmp("lbl_error", "ERROR! " + strMensajeError);
                     }
                 });
-                // ...
+                var user = firebase.auth().currentUser;
+
+                if (error === 0 && user)
+                {
+                    cambiarClaseCmp("msg_error", "alertOk");
+                    setHtmlCmp("lbl_error", "INFORME! Autenticación exitosa.");
+                }
                 });
             }
 
