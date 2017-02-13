@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-<html>
+{% block html %}
     <head>
         <meta charset="UTF-8"></meta>
         <title>MAPX Login</title>
-        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
     </head>
 
 {% block body %}
+        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
         <script src="{{ asset('js/script.js') }}"></script>
         <script src='/js/jquery.min.js'></script>
         <script src="/js/login.js"></script>
@@ -182,4 +182,4 @@
             visibilidadCmp("msg_error", 0);
         </script>
 {% endblock %}
-</html>
+{% endblock %}
