@@ -4,7 +4,7 @@ defult_index:
     methods: GET
 
 defult_ubicar:
-    path:   /
+    path:   /ubicar
     defaults: { _controller: "AppBundle:Default:ubicar" }
     methods: GET
 
