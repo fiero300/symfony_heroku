@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>MAPX Login</title>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
+    </head>
+
+    <body id="begin-page">
+        <script src='/js/jquery.min.js'></script>
+        <script src="/js/login.js"></script>
+        <script src="/js/commons.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+        <script>
+            // Inicialización de Firebase
+            var config = {
+                apiKey: "AIzaSyCg_gZRScHBxqdjTpKqmcBTyaSp0ct5Hvo",
+                authDomain: "posicionamiento-d0b1b.firebaseapp.com",
+                databaseURL: "https://posicionamiento-d0b1b.firebaseio.com",
+                storageBucket: "posicionamiento-d0b1b.appspot.com",
+                messagingSenderId: "748730235011"
+            };
+            firebase.initializeApp(config);
+
+            function login()
+            {
+
+                var strCodigoError = null;
+                var strMensajeError = null;
+                var strUsuario = $("#txt_usuario").val();
+                var strClave = $("#txt_clave").val();
+
+                visibilidadCmp("msg_error", 1);
+                if (strUsuario == '' || strUsuario.trim == '' || strUsuario == null)
+                {
+                    setHtmlCmp("lbl_error", "ERROR! Usuario Inválido.");
+                }
+                else
+                {
+                    visibilidadCmp("msg_error", 0);
+                    var error = 0;
+                    firebase.auth().signInWithEmailAndPassword(strUsuario, strClave).catch(function (err)
+                    {
+                        cambiarClaseCmp("msg_error", "alert");
+                        error = 1;
+                        visibilidadCmp("msg_error", 1);
+                        strCodigoError = err.code;
+                        strMensajeError = err.message;
+
+                        console.log(strCodigoError);
+                        console.log(strMensajeError);
+
+                        if (strCodigoError === 'auth/invalid-email')
+                        {
+                            setHtmlCmp("lbl_error", "ERROR! La dirección de correo electrónico incorrecta.");
+                        }
+                        else if (strCodigoError === 'auth/user-not-found')
+                        {
+                            setHtmlCmp("lbl_error", "ERROR! No hay registro de usuario correspondiente a este identificador. " +
+                                    "El usuario puede haber sido eliminado.");
+                        }
+                        else if (strCodigoError === 'auth/wrong-password')
+                        {
+                            setHtmlCmp("lbl_error", "ERROR! La contraseña no es válida o el usuario no tiene una contraseña.");
+                        }
+                        else if (strCodigoError === 'auth/invalid-api-key')
+                        {
+                            setHtmlCmp("lbl_error", "ERROR! Su clave de API no es válida.");
+                        }
+                        else
+                        {
+                            setHtmlCmp("lbl_error", "ERROR! " + strMensajeError);
+                        }
+                    });
+
+                    var user = firebase.auth().currentUser;
+
+                    if (error == 0 && user)
+                    {
+                        cambiarClaseCmp("msg_error", "alertOk");
+                        setHtmlCmp("lbl_error", "INFORME! Autenticación exitosa.");
+                    }
+
+                }
+            }
+
+            function crear()
+            {
+                var strUsuario = $("#txt_usuario").val();
+                var strClave = $("#txt_clave").val();
+
+                firebase.auth().createUserWithEmailAndPassword(strUsuario, strClave).catch(function (error)
+                {
+                    // Handle Errors here.
+                    var strCodigoError = error.code;
+                    var strMensajeError = error.message;
+                    // ...
+                });
+            }
+
+            firebase.auth().onAuthStateChanged(function (user)
+            {
+                if (user)
+                {
+                    console.log("Usuario en sesión-> " + user.email);
+                    setHtmlCmp("lbl_usuario", user.email);
+                }
+                else
+                {
+                    console.log("No hay sesión");
+                }
+            });
+            console.log("currentUser-> " + firebase.auth().currentUser);
+        </script>
+
+        <div id="msg_error" class="alert" align="center">
+            <strong><label id="lbl_error"></label></strong>
+        </div>
+        <label id="lbl_usuario"></label>
+        <div class="wrapper">
+            <div class="container" align="center">
+
+                <form>
+                    <table width="100%" height="100%">
+                        <tr>
+                            <td>
+                                <h2>Incio de Sesión</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="txt_usuario" placeholder="Username" value="alejandrodv7@gmail.com">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="password" id="txt_clave" placeholder="Password" value="leal2269">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" onclick="login();" id="btn_login">Login</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" onclick="crear();" id="btn_crear">Crear</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" onclick="cerrarSesion();" id="btn_cerrar">Cerrar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/ubicar">Entrar</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <ul class="bg-bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+
+        <script>
+            visibilidadCmp("msg_error", 0);
+        </script>
+    </body>
+</html>
