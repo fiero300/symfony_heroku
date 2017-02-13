@@ -1,13 +1,7 @@
-backend:
-    resource: "@BackendBundle/Resources/config/routing.yml"
-    prefix:   /backend
+#backend:
+#    resource: "@BackendBundle/Resources/config/routing.yml"
+#    prefix:   /backend
 
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
-
-app_ubicar:
-    path:   /ubicar
-    defaults: { _controller: "AppBundle:Default:number"}
-    methods:    GET
-    

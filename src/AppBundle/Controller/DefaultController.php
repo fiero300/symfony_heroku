@@ -18,4 +18,15 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }
+    
+    /**
+     * @Route("/hola", name="hola")
+     */
+    public function holaAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('hola.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+        ));
+    }
 }
