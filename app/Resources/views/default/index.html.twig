@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% extends 'base.html.twig' %}
+
 <html>
     <head>
         <meta charset="UTF-8"></meta>
@@ -6,7 +7,8 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
     </head>
 
-    <body id="begin-page">
+{% block body %}
+        <script src="{{ asset('js/script.js') }}"></script>
         <script src='/js/jquery.min.js'></script>
         <script src="/js/login.js"></script>
         <script src="/js/commons.js"></script>
@@ -179,5 +181,5 @@
         <script>
             visibilidadCmp("msg_error", 0);
         </script>
-    </body>
+{% endblock %}
 </html>
