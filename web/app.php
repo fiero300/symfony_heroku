@@ -17,10 +17,10 @@ include_once __DIR__ . '/../var/bootstrap.php.cache';
   $loader->unregister();
   $apcLoader->register(true);
  */
-$app->get('/', function() use($app)
-{
-    return $app['twig']->render('index.twig', array('app' => $app, "nombre" => "Alejandro"));
-});
+//$app->get('/', function() use($app)
+//{
+//    return $app['twig']->render('index.twig', array('app' => $app, "nombre" => "Alejandro"));
+//});
 
 //require_once __DIR__.'/../app/AppCache.php';
 
@@ -34,3 +34,6 @@ $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
 
+return $this->render('default/index.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+        ));
