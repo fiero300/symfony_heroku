@@ -6,7 +6,7 @@
         <title>MAPX Login</title>
     </head>
 
-    {% block body %}
+{% block body %}
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
         <script src='/js/jquery.min.js'></script> 
         <script src="/js/login.js"></script>
@@ -32,7 +32,7 @@
                 var strClave = $("#txt_clave").val();
 
                 visibilidadCmp("msg_error", 1);
-                if (strUsuario === '' || strUsuario.trim === '' || strUsuario === null)
+                if (strUsuario == '' || strUsuario.trim == '' || strUsuario == null)
                 {
                     setHtmlCmp("lbl_error", "ERROR! Usuario Inválido.");
                 }
@@ -76,7 +76,7 @@
 
                     var user = firebase.auth().currentUser;
 
-                    if (error === 0 && user)
+                    if (error == 0 && user)
                     {
                         cambiarClaseCmp("msg_error", "alertOk");
                         setHtmlCmp("lbl_error", "INFORME! Autenticación exitosa.");
@@ -90,51 +90,12 @@
                 var strUsuario = $("#txt_usuario").val();
                 var strClave = $("#txt_clave").val();
 
-                visibilidadCmp("msg_error", 0);
-                var error = 0;
-
-                firebase.auth().createUserWithEmailAndPassword(strUsuario, strClave).catch(function (err)
+                firebase.auth().createUserWithEmailAndPassword(strUsuario, strClave).catch(function (error)
                 {
-                    visibilidadCmp("msg_error", 1);
-                    cambiarClaseCmp("msg_error", "alert");
-                    
                     // Handle Errors here.
-                    var strCodigoError = err.code;
-                    var strMensajeError = err.message;
-                    error = 1;
-
-                    console.log(strCodigoError);
-                    console.log(strMensajeError);
-
-                    if (strCodigoError === 'auth/invalid-email')
-                    {
-                        setHtmlCmp("lbl_error", "ERROR! La dirección de correo electrónico incorrecta.");
-                    }
-                    else if (strCodigoError === 'auth/user-not-found')
-                    {
-                        setHtmlCmp("lbl_error", "ERROR! No hay registro de usuario correspondiente a este identificador. " +
-                                "El usuario puede haber sido eliminado.");
-                    }
-                    else if (strCodigoError === 'auth/wrong-password')
-                    {
-                        setHtmlCmp("lbl_error", "ERROR! La contraseña no es válida o el usuario no tiene una contraseña.");
-                    }
-                    else if (strCodigoError === 'auth/invalid-api-key')
-                    {
-                        setHtmlCmp("lbl_error", "ERROR! Su clave de API no es válida.");
-                    }
-                    else
-                    {
-                        setHtmlCmp("lbl_error", "ERROR! " + strMensajeError);
-                    }
-                });
-                var user = firebase.auth().currentUser;
-
-                if (error === 0 && user)
-                {
-                    cambiarClaseCmp("msg_error", "alertOk");
-                    setHtmlCmp("lbl_error", "INFORME! Autenticación exitosa.");
-                }
+                    var strCodigoError = error.code;
+                    var strMensajeError = error.message;
+                    // ...
                 });
             }
 
@@ -219,5 +180,5 @@
         <script>
             visibilidadCmp("msg_error", 0);
         </script>
-    {% endblock %}
+{% endblock %}
 {% endblock %}
