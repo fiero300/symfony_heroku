@@ -20,9 +20,9 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/hola", name="hola")
+     * @Route("/mapx", name="mapx")
      */
-    public function holaAction(Request $request)
+    public function mapxAction(Request $request)
     {
         // replace this example code with whatever you need
         return $this->render('hola.html.twig', array(
