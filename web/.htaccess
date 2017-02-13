@@ -51,10 +51,13 @@ DirectoryIndex app.php
     # If the requested filename exists, simply serve it.
     # We only want to let Apache serve files and not directories.
     RewriteCond %{REQUEST_FILENAME} -f
-    RewriteRule ^ - [L]
+    #RewriteRule ^ - [L]
 
     # Rewrite all other queries to the front controller.
     RewriteRule ^ %{ENV:BASE}/app.php [L]
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [QSA,L]
+
 </IfModule>
 
 <IfModule !mod_rewrite.c>
