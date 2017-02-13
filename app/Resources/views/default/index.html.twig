@@ -6,7 +6,7 @@
         <title>MAPX Login</title>
     </head>
 
-{% block body %}
+    {% block body %}
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
         <script src='/js/jquery.min.js'></script> 
         <script src="/js/login.js"></script>
@@ -26,30 +26,27 @@
             function login()
             {
 
-                var strCodigoError = null;
+                var strCodigoError  = null;
                 var strMensajeError = null;
-                var strUsuario = $("#txt_usuario").val();
-                var strClave = $("#txt_clave").val();
+                var error           = 0;
+                var strUsuario      = $("#txt_usuario").val();
+                var strClave        = $("#txt_clave").val();
 
                 visibilidadCmp("msg_error", 1);
-                if (strUsuario == '' || strUsuario.trim == '' || strUsuario == null)
+                if (strUsuario === '' || strUsuario.trim === '' || strUsuario === null)
                 {
                     setHtmlCmp("lbl_error", "ERROR! Usuario Inválido.");
                 }
                 else
                 {
                     visibilidadCmp("msg_error", 0);
-                    var error = 0;
                     firebase.auth().signInWithEmailAndPassword(strUsuario, strClave).catch(function (err)
                     {
                         cambiarClaseCmp("msg_error", "alert");
-                        error = 1;
                         visibilidadCmp("msg_error", 1);
+                        error = 1;
                         strCodigoError = err.code;
                         strMensajeError = err.message;
-
-                        console.log(strCodigoError);
-                        console.log(strMensajeError);
 
                         if (strCodigoError === 'auth/invalid-email')
                         {
@@ -76,7 +73,7 @@
 
                     var user = firebase.auth().currentUser;
 
-                    if (error == 0 && user)
+                    if (error === 0 && user)
                     {
                         cambiarClaseCmp("msg_error", "alertOk");
                         setHtmlCmp("lbl_error", "INFORME! Autenticación exitosa.");
@@ -88,17 +85,36 @@
             function crear()
             {
                 var strUsuario = $("#txt_usuario").val();
-                var strClave = $("#txt_clave").val();
+                var strClave   = $("#txt_clave").val();
+                var error      = 0;
 
-                firebase.auth().createUserWithEmailAndPassword(strUsuario, strClave).catch(function (error)
+                visibilidadCmp("msg_error", 0);
+
+                firebase.auth().createUserWithEmailAndPassword(strUsuario, strClave).catch(function (err)
                 {
-                    // Handle Errors here.
-                    var strCodigoError = error.code;
-                    var strMensajeError = error.message;
-                    console.log(strCodigoError);
-                    console.log(strMensajeError);
-                    // ...
+                    error           = 1;
+                    strCodigoError  = err.code;
+                    strMensajeError = err.message;
+                    
+                    visibilidadCmp("msg_error", 1);
+                    cambiarClaseCmp("msg_error", "alert");
+
+                    if (strCodigoError === 'auth/email-already-in-use')
+                    {
+                        setHtmlCmp("lbl_error", "ERROR! La dirección de correo electrónico ya está en uso por otra cuenta.");
+                    }
+                    else
+                    {
+                        setHtmlCmp("lbl_error", "ERROR! " + strMensajeError);
+                    }
                 });
+                var user = firebase.auth().currentUser;
+
+                if (error === 0 && user)
+                {
+                    cambiarClaseCmp("msg_error", "alertOk");
+                    setHtmlCmp("lbl_error", "INFORME! Autenticación exitosa.");
+                }
             }
 
             firebase.auth().onAuthStateChanged(function (user)
@@ -106,7 +122,6 @@
                 if (user)
                 {
                     console.log("Usuario en sesión-> " + user.email);
-                    setHtmlCmp("lbl_usuario", user.email);
                 }
                 else
                 {
@@ -119,7 +134,6 @@
         <div id="msg_error" class="alert" align="center">
             <strong><label id="lbl_error"></label></strong>
         </div>
-        <label id="lbl_usuario"></label>
         <div class="wrapper">
             <div class="container" align="center">
 
@@ -182,5 +196,5 @@
         <script>
             visibilidadCmp("msg_error", 0);
         </script>
-{% endblock %}
+    {% endblock %}
 {% endblock %}
