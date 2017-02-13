@@ -19,9 +19,6 @@ class LoginController extends Controller
         ));
     }
     
-    /**
-     * @Route("/lucky/number")
-     */
     public function numberAction()
     {
         $number = mt_rand(0, 100);

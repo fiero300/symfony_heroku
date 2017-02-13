@@ -1,3 +1,9 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+app_ubicar:
+    path:   /ubicar
+    defaults: { _controller: "AppBundle:Default:number"}
+    methods:    GET
+    
