@@ -64,5 +64,5 @@ DirectoryIndex app.php
         # and the generated links can still be used.
         RedirectMatch 302 ^/$ /app.php/
         # RedirectTemp cannot be used instead
-    </IfModule>
+    </IfModule> 
 </IfModule>
