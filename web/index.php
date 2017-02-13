@@ -11,7 +11,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(),
 
 // Register view rendering
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path'       => __DIR__.'/views',
+    'twig.path'       => __DIR__.'/Resources/views',
     'twig.class_path' => __DIR__.'../vendor/Twig/lib',
     'twig.options'    => array('debug' => true),
 ));
@@ -21,7 +21,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app->get('/', function() use($app) 
 {
   $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('index.twig', array('app' => $app, "nombre"=>"Alejandro"));
+  return $app['twig']->render(__DIR__.'/Resources/views/index.html.twig', array('app' => $app, "nombre"=>"Alejandro"));
 });
 
 $app->run();

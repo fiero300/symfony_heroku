@@ -1,0 +1,10 @@
+defult_index:
+    path:   /
+    defaults: { _controller: "AppBundle:Default:index" }
+    methods: GET
+
+defult_ubicar:
+    path:   /
+    defaults: { _controller: "AppBundle:Default:ubicar" }
+    methods: GET
+
