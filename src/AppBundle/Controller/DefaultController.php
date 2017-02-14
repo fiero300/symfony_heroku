@@ -36,7 +36,7 @@ class DefaultController extends Controller
     public function registroAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('signup.html.twig', array(
+        return $this->render('default/signup.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }
