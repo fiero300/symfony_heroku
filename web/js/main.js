@@ -1,3 +1,5 @@
+var status = 0;
+
 var config = {
     apiKey: "AIzaSyCg_gZRScHBxqdjTpKqmcBTyaSp0ct5Hvo",
     authDomain: "posicionamiento-d0b1b.firebaseapp.com",
@@ -16,6 +18,7 @@ firebase.initializeApp(config);
  */
 function iniciarSesion()
 {
+    status = 0;
     console.log("iniciarSesion");
     var strUser = $("#txt_usuario").val();
     var strPassword = $("#txt_clave").val();
@@ -29,6 +32,7 @@ function iniciarSesion()
         {
             firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
             {
+                status = 1;
                 window.location.href = "/mapx";
             }).catch(function (err)
             {

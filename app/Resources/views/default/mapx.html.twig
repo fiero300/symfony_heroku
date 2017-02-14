@@ -22,16 +22,16 @@
             var map;
             console.log(firebase.auth().currentUser);
             /*
-            if (!firebase.auth().currentUser)
-            {
-                //firebase.auth().signOut();
-                //window.location.href = "/";
-            }
-            else
-            {
-                setHtmlCmp("user-name", firebase.auth().currentUser.email);
-            }
-            */
+             if (!firebase.auth().currentUser)
+             {
+             //firebase.auth().signOut();
+             //window.location.href = "/";
+             }
+             else
+             {
+             setHtmlCmp("user-name", firebase.auth().currentUser.email);
+             }
+             */
 
             firebase.auth().onAuthStateChanged(function (user)
             {
@@ -44,7 +44,14 @@
                 else
                 {
                     console.log("No hay sesión");
-                    alert("Se requiere Iniciar Sesión");
+                    if (status === 0)
+                    {
+                        alert("Se requiere Iniciar Sesión");
+                    }
+                    else if (status === 2)
+                    {
+                        alert("Gracias por utilizar nuestro servicio");
+                    }
                     window.location.href = "/";
                 }
             });
@@ -85,7 +92,7 @@
                 </td>
             </tr>
         </table>
-        
+
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkJj8aKgrTVqSmldMR5gwCxaSvuE_D7wk&callback=initMap">
         </script>

@@ -1,4 +1,3 @@
-
 /**
  * Funcion     : visibilidadCmp().
  * Descripcion : Elimina u Otorga la Visibilidad de un componente o listado de compomentes.
@@ -98,6 +97,7 @@ function init()
  */
 function cerrarSesion()
 {
+    status = 2;
     firebase.auth().signOut().then(function ()
     {
         window.location.href = "/";
