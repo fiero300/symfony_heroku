@@ -58,7 +58,7 @@
             function eliminarMarcador(key)
             {
                 var updates = {};
-                updates['/MARKERS/' + key] = null;
+                updates['/MARCADORES_/' + key] = null;
                 firebase.database().ref().update(updates);
             }
 
@@ -85,7 +85,8 @@
                 var str1 = "Ubicación: " + t.key + "<br/><br/> Coordenadasy " + t.lat + ", " + t.lon;
 
                 var str2 = "<a href='javascript:void(0);' onclick='javascript:eliminarMarcador(" + t.key + ");'>delete</a>";
-
+                console.log(str1);
+                console.log(str2);
                 cell1.innerHTML = str1;
                 cell2.innerHTML = str2;
 
