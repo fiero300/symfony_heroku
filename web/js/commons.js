@@ -87,7 +87,7 @@ function iniciarSesion(strUser, strPassword)
 {
     firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function ()
     {
-        document.location.href="/mapx";
+        window.location.href="/mapx";
     }, function (error)
     {
         console.log(error.code);
