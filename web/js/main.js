@@ -25,10 +25,6 @@ function iniciarSesion()
 
     try
     {
-        alert("Antes-> " + firebase.auth().currentUser);
-        firebase.auth().signOut();
-        alert("Despues-> " + firebase.auth().currentUser);
-        
         if (!firebase.auth().currentUser)
         {
             firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
@@ -42,7 +38,6 @@ function iniciarSesion()
         else
         {
             firebase.auth().signOut();
-            alert("Cerrar Sesión");
         }
     }
     catch (e)

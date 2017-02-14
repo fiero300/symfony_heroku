@@ -38,27 +38,15 @@
 
             //var userName = document.getElementById('user-name');
             var map;
-            // Inicialización de Firebase
-            /*
-             var config = {
-             apiKey: "AIzaSyCg_gZRScHBxqdjTpKqmcBTyaSp0ct5Hvo",
-             authDomain: "posicionamiento-d0b1b.firebaseapp.com",
-             databaseURL: "https://posicionamiento-d0b1b.firebaseio.com",
-             storageBucket: "posicionamiento-d0b1b.appspot.com",
-             messagingSenderId: "748730235011"
-             };
-             firebase.initializeApp(config);
-             */
-            console.log("user");
-            alert("MAP Usuario-> " + firebase.auth().currentUser);
+            console.log(firebase.auth().currentUser);
             if (!firebase.auth().currentUser)
             {
-                //firebase.auth().signOut();
-                //window.location.href = "/";
+                firebase.auth().signOut();
+{#                window.location.href = "/";#}
             }
             else
             {
-                alert("Usuario-> " + firebase.auth().currentUser);
+                setHtmlCmp("user-name", firebase.auth().currentUser.email);
             }
 
             //dataBase = firebase.database();
