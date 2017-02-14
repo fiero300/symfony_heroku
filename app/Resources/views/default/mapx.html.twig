@@ -77,17 +77,24 @@
             marcadorRef.on("child_removed", function (snapshot, prevChildKey)
             {
                 var t = snapshot.val();
+
+                for (var k in marcadores)
+                {
+                    if (marcadores.hasOwnProperty(k))
+                    {
+                        marcadores[k].setMap(null);
+                    }
+                }
+                
                 console.log("Se eliminará-> " + t.key);
                 delete marcadores[t.key];
                 
-                for (var i = 0; i < marcadores.length; i++)
+                for (var k in marcadores)
                 {
-                    marcadores[i].setMap(null);
-                }
-                
-                for (var i = 0; i < marcadores.length; i++)
-                {
-                    marcadores[i].setMap(map);
+                    if (marcadores.hasOwnProperty(k))
+                    {
+                        marcadores[k].setMap(map);
+                    }
                 }
             });
         </script>
