@@ -55,6 +55,13 @@
                 });
             }
 
+            function eliminarMarcador(key)
+            {
+                var updates = {};
+                updates['/MARKERS/' + key] = null;
+                firebase.database().ref().update(updates);
+            }
+
             marcadorRef = firebase.database().ref().child('MARKERS');
             marcadorRef.on("child_added", function (snapshot, prevChildKey)
             {
@@ -104,27 +111,89 @@
                 }
             });
         </script>
-        <table border="0" class="tabla2">
+        <table border="0" class="tabla1">     
             <tr height="20%">
                 <td>
+                    {% if error is defined %}
+                        <div class='errormessage'>{{ error }}</div>
+                    {% endif %}
                 </td>
                 <td>
-                    <span id="user-name"></span>                    
-                    <a id="btnSignOut" class="btnSignOut" href="javascript:void(0);" onclick="javascript:cerrarSesion();">Cerrar Sesi&oacute;n</a>
-                </td>
+                    <table border="0" class="tabla2">
+                        <tr>
+                        <div id="msg_error" class="alert" align="center">
+                            <strong><label id="lbl_error"></label></strong>
+                        </div>
+            </tr>
+            <tr>
                 <td>
-                    <span id="user-name"></span>
+                    <div >
+                        <h1><span id="user-name"></span></h1>
+                    </div>
+                </td>
+                <td width="30%">
+                    <div style="padding-top: 24%;" align="right">
+                        <a id="btnSignOut" class="btnSignOut" href="javascript:void(0);" onclick="javascript:cerrarSesion();">Cerrar Sesi&oacute;n</a>
+                    </div>
+                </td>
+            </tr>	
+        </table>
+    </td>
+    <td>
+    </td>
+</tr>
+
+<tr>
+    <td width="15%"></td>
+    <td>
+
+        <table border="0" class="tabla2">  
+            <tr>
+                <td>
+                    <table border="0" class="tabla2">
+                        <tr>
+                            <td></td>
+                            <td width="30%">
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
-            <tr height="80%">
-                <td colspan="3">
-                    <div id="map"></div>
+
+            <tr height="50%">
+                <td>
+                    <table class="tabla2">  
+                        <tr>
+                            <td>
+                                <div id="map"></div>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         </table>
 
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkJj8aKgrTVqSmldMR5gwCxaSvuE_D7wk&callback=initMap">
-        </script>
-    {% endblock %}
+    </td>
+    <td width="15%"></td>
+</tr>
+
+<tr height="20%">
+    <td>					
+    </td>
+    <td>
+        <table border="0" class="tabla2">
+            <td width="40%">
+                <h2>Empieza a usar mapx ahora!</h2>
+            </td>
+            <td></td>
+        </table>
+    </td>
+    <td></td>
+</tr>
+</table>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkJj8aKgrTVqSmldMR5gwCxaSvuE_D7wk&callback=initMap">
+</script>
+{% endblock %}
 {% endblock %}
