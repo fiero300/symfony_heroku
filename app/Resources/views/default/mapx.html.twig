@@ -18,19 +18,7 @@
         <script src="/js/commons.js"></script>
         <script type="text/javascript">
 
-            //var userName = document.getElementById('user-name');
             var map;
-            /*
-             if (!firebase.auth().currentUser)
-             {
-             //firebase.auth().signOut();
-             //window.location.href = "/";
-             }
-             else
-             {
-             setHtmlCmp("user-name", firebase.auth().currentUser.email);
-             }
-             */
 
             firebase.auth().onAuthStateChanged(function (user)
             {
@@ -54,39 +42,39 @@
 
             function initMap()
             {
-            var myLatLng = {lat: - 2.183004360911292, lng: - 79.92313385009766};
-                    map = new google.maps.Map(document.getElementById('map'),
-                    {
-                    center: myLatLng,
+                var myLatLng = {lat: -2.183004360911292, lng: -79.92313385009766};
+                map = new google.maps.Map(document.getElementById('map'),
+                        {
+                            center: myLatLng,
                             zoom: 12
-                    });
-                    map.addListener('dblclick', function (e)
-                    {
-                        console.log("marcador creado");
-                        var marker = new google.maps.Marker({
-                        position: e.latLng,
-                                map: map
-                                draggable: true,
-                                animation: google.maps.Animation.DROP,
-                                title: 'Marker 1',
-                                icon: redPin
                         });
-                        writeNewMarker(e.latLng.lat(), e.latLng.lng());
-                        marker.setMap(null);
-                        console.log("marcador eliminado");
+                map.addListener('dblclick', function (e)
+                {
+                    console.log("marcador creado");
+                    var marker = new google.maps.Marker({
+                        position: e.latLng,
+                        map: map,
+                        draggable: true,
+                        animation: google.maps.Animation.DROP,
+                        title: 'Marker 1',
+                        icon: redPin
                     });
+                    writeNewMarker(e.latLng.lat(), e.latLng.lng());
+                    marker.setMap(null);
+                    console.log("marcador eliminado");
+                });
             }
             tempRef = firebase.database().ref().child('MARKERS');
-                    tempRef.on("child_added", function (snapshot, prevChildKey)
-                    {
-                    var t = snapshot.val();
-                            new google.maps.Marker(
-                            {
+            tempRef.on("child_added", function (snapshot, prevChildKey)
+            {
+                var t = snapshot.val();
+                new google.maps.Marker(
+                        {
                             position: {lat: t.lat, lng: t.lng},
-                                    map: map
-                            });
-                            console.log("marcador creado nuevamente");
-                    });
+                            map: map
+                        });
+                console.log("marcador creado nuevamente");
+            });
         </script>
         <table border="0" class="tabla2">
             <tr height="20%">
