@@ -98,13 +98,11 @@ function init()
  */
 function cerrarSesion()
 {
-    /*
     firebase.auth().signOut().then(function ()
     {
-        document.location.href="/";
+        window.location.href = "/";
     }, function (error)
     {
         console.log(error.code);
     });
-    */
 }
