@@ -63,6 +63,7 @@
             }
 
             marcadorRef = firebase.database().ref().child('MARKERS');
+            var tblMarcadores = document.getElementById("tblMarcadores");
             marcadorRef.on("child_added", function (snapshot, prevChildKey)
             {
                 var marker = new Object();
@@ -78,9 +79,12 @@
                             title: 'Marker ' + t.uid
                         });
                 marcadores[t.key] = marcador;
+                var row = tblMarcadores.insertRow(-1);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                cell1.innerHTML = "NEW CELL21";
+                cell2.innerHTML = "NEW CELL22";
 
-                console.log("marcadores");
-                console.log(marcadores);
             });
 
             marcadorRef.on("child_removed", function (snapshot, prevChildKey)
