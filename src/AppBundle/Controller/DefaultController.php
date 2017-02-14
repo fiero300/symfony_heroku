@@ -14,7 +14,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
+        return $this->render('default/signin.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }
@@ -25,7 +25,7 @@ class DefaultController extends Controller
     public function mapxAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('mapx.html.twig', array(
+        return $this->render('default/mapx.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }
