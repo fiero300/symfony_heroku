@@ -50,30 +50,25 @@
                         });
                 map.addListener('dblclick', function (e)
                 {
-                    console.log("marcador creado");
-                    var marker = new google.maps.Marker({
-                        position: e.latLng,
-                        map: map,
-                        draggable: true,
-                        animation: google.maps.Animation.DROP,
-                        title: 'Marker 1',
-                        icon: redPin
-                    });
                     writeNewMarker(e.latLng.lat(), e.latLng.lng());
-                    marker.setMap(null);
-                    console.log("marcador eliminado");
+                    console.log("marcador guardado en base");
                 });
             }
             tempRef = firebase.database().ref().child('MARKERS');
             tempRef.on("child_added", function (snapshot, prevChildKey)
             {
                 var t = snapshot.val();
+                console.log(t);
                 new google.maps.Marker(
                         {
                             position: {lat: t.lat, lng: t.lng},
-                            map: map
+                            map: map,
+                            draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            title: 'Marker ' + t.uid,
+                            icon: redPin
                         });
-                console.log("marcador creado nuevamente");
+                console.log("marcador creado");
             });
         </script>
         <table border="0" class="tabla2">
