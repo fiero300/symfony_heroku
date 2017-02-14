@@ -59,13 +59,16 @@
             {
                 var t = snapshot.val();
                 var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lng)};
-                new google.maps.Marker(
+                console.log(latLng);
+                var marcador = new google.maps.Marker(
                         {
                             position: latLng,
-                            map: map,
                             draggable: true,
+                            animation: google.maps.Animation.DROP,
                             title: 'Marker ' + t.uid
                         });
+                console.log(marcador);
+                marcador.setMap(map);
             });
         </script>
         <table border="0" class="tabla2">
