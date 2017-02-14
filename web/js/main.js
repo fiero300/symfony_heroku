@@ -25,16 +25,15 @@ function iniciarSesion()
 
     try
     {
-        console.log("Antes");
+        console.log("Antes-> " + firebase.auth().currentUser);
         firebase.auth().signOut();
-        console.log("Despues");
+        console.log("Despues-> " + firebase.auth().currentUser);
         
-        if (firebase.auth().currentUser)
+        if (!firebase.auth().currentUser)
         {
             firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
             {
                 window.location.href = "/mapx";
-                //window.location = "file:///C:/Users/since_000/Desktop/proy/maps.html";
             }).catch(function (err)
             {
                 console.log("ERROR-> " + err.message);
