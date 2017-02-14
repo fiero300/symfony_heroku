@@ -25,9 +25,9 @@ function iniciarSesion()
 
     try
     {
-        console.log("Antes-> " + firebase.auth().currentUser);
+        alert("Antes-> " + firebase.auth().currentUser);
         firebase.auth().signOut();
-        console.log("Despues-> " + firebase.auth().currentUser);
+        alert("Despues-> " + firebase.auth().currentUser);
         
         if (!firebase.auth().currentUser)
         {
@@ -42,7 +42,7 @@ function iniciarSesion()
         else
         {
             firebase.auth().signOut();
-            console.log("Cerrar Sesión");
+            alert("Cerrar Sesión");
         }
     }
     catch (e)
