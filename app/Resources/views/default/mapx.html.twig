@@ -4,20 +4,17 @@
     <head>
         <meta charset="UTF-8"></meta>
         <title>MAPX Geo</title>
+    </head>
+
+    {% block body %}
         <style type="text/css">
             html, body { height: 100%; margin: 0; padding: 0; }
             #map { height: 100%; }
         </style>
-
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
         <script src='/js/jquery.min.js'></script>
         <script src="/js/commons.js"></script>        
         <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
-
-    </head>
-
-    {% block body %}
-        <label id="lbl_error"></label>
         <table border="1" class="tabla2">
             <tr height="20%">
                 <td>
@@ -77,6 +74,7 @@
             {
                 if (user)
                 {
+                    console.log("SIII hay sesión");
                     //userName.textContent = user.email;
                     setHtmlCmp("user-name", user.email);
                 }
