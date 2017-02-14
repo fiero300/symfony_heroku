@@ -76,8 +76,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a id="goSignIn" class="btnSignIn" title="Iniciar Sesión"
-                                   href="#">Iniciar Sesi&oacute;n</a>
+                                <a class="btnSignIn" href="javascript:void(0);" onclick="javascript:sesion();">Iniciar Sesi&oacute;n</a>
                             </td>
                         </tr>
                     </table>
@@ -107,11 +106,11 @@
 <script>
     var strUser = $("#txt_usuario").val();
     var strPassword = $("#txt_clave").val();
-    $('#goSignIn').click(function ()
-    {
-        iniciarSesion(strUser, strPassword);
-        return false;
-    });
+
+    function sesion()
+	{
+		iniciarSesion(strUser, strPassword);
+	}
 </script>
 {% endblock %}
 
