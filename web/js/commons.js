@@ -76,18 +76,18 @@ function setHtmlCmp(objCmp, strHtml)
     }
 }
 /*
-function init()
-{
-	var config = {
-				apiKey: "AIzaSyCg_gZRScHBxqdjTpKqmcBTyaSp0ct5Hvo",
-				authDomain: "posicionamiento-d0b1b.firebaseapp.com",
-				databaseURL: "https://posicionamiento-d0b1b.firebaseio.com",
-				storageBucket: "posicionamiento-d0b1b.appspot.com",
-				messagingSenderId: "748730235011"
-			};
-	firebase.initializeApp(config);
-}
-*/
+ function init()
+ {
+ var config = {
+ apiKey: "AIzaSyCg_gZRScHBxqdjTpKqmcBTyaSp0ct5Hvo",
+ authDomain: "posicionamiento-d0b1b.firebaseapp.com",
+ databaseURL: "https://posicionamiento-d0b1b.firebaseio.com",
+ storageBucket: "posicionamiento-d0b1b.appspot.com",
+ messagingSenderId: "748730235011"
+ };
+ firebase.initializeApp(config);
+ }
+ */
 
 /**
  * Funcion     : cerrarSesion().
@@ -105,4 +105,24 @@ function cerrarSesion()
     {
         console.log(error.code);
     });
+}
+
+function writeNewMarker(lat, lon)
+{
+    uid = firebase.auth().uid;
+
+    var markerData =
+            {
+                uid: uid,
+                lat: lat,
+                lon: lon
+            };
+
+    var newMarkerKey = firebase.database().ref().child('MARKERS').push().key;
+
+    var updates = {};
+    updates['/MARKERS/' + newMarkerKey] = markerData;
+    //updates['/USER-MARKERS/' + uid + '/' + newMarkerKey] = markerData;
+
+    return firebase.database().ref().update(updates);
 }
