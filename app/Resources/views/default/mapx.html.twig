@@ -55,7 +55,6 @@
                 });
             }
 
-
             function eliminarMarcador(key)
             {
                 var updates = {};
@@ -63,10 +62,7 @@
                 firebase.database().ref().update(updates);
             }
 
-
             marcadorRef = firebase.database().ref().child('MARKERS');
-
-            var tblMarcadores = document.getElementById("tbl_marcadores");
             marcadorRef.on("child_added", function (snapshot, prevChildKey)
             {
                 var marker = new Object();
@@ -82,22 +78,9 @@
                             title: 'Marker ' + t.uid
                         });
                 marcadores[t.key] = marcador;
-                console.log(1);
-                console.log(2);
-                var row = tblMarcadores.insertRow(-1);
-                console.log(3);
-                var cell1 = row.insertCell(0);
-                console.log(4);
-                var cell2 = row.insertCell(1);
-                console.log(5);
-                var str1 = "Ubicación: "t.key + "<br/><br/> Coordenadasy " + t.lat + ", " + t.lon;
-                var str2 = "<a href='javascript:void(0);' onclick='javascript:eliminarMarcador(" + t.key + ");'>delete</a>";
-                console.log(str1);
-                console.log(str2);
-                cell1.innerHTML = str1;
-                console.log(6);
-                cell2.innerHTML = str2;
-                console.log(7);
+
+                console.log("marcadores");
+                console.log(marcadores);
             });
 
             marcadorRef.on("child_removed", function (snapshot, prevChildKey)
@@ -167,9 +150,6 @@
         <table border="0" class="tabla2">  
             <tr height="50%">
                 <td width="20%">
-                    <table id="tbl_marcadores" border="0" class="tabla2">
-
-                    </table>
                 </td>
                 <td>
                     <table class="tabla2">  
