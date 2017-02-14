@@ -78,6 +78,23 @@ function setHtmlCmp(objCmp, strHtml)
 }
 
 /**
+ * Funcion     : iniciarSesion().
+ * Descripcion : Inicia la sesion del usuario.
+ * Versión     : 1.0 - 11/02/2017 -> "Creacion".
+ * @author Alejandro Domínguez Vargas
+ */
+function iniciarSesion(strUser, strPassword)
+{
+    firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function ()
+    {
+        document.location.href="/mapx";
+    }, function (error)
+    {
+        console.log(error.code);
+    });
+}
+
+/**
  * Funcion     : cerrarSesion().
  * Descripcion : Cierra la sesion actual del usuario si la hay.
  * Versión     : 1.0 - 11/02/2017 -> "Creacion".
@@ -90,6 +107,6 @@ function cerrarSesion()
         document.location.href="/";
     }, function (error)
     {
-        alert(error.code);
+        console.log(error.code);
     });
 }
