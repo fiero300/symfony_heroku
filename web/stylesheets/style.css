@@ -139,6 +139,48 @@ input:focus
     top:1px;
 }
 
+.btnSignOut
+{
+    background: #e64c4c;
+    background-image: -webkit-linear-gradient(top, #e64c4c, #912d46);
+    background-image: -moz-linear-gradient(top, #e64c4c, #912d46);
+    background-image: -ms-linear-gradient(top, #e64c4c, #912d46);
+    background-image: -o-linear-gradient(top, #e64c4c, #912d46);
+    background-image: linear-gradient(to bottom, #e64c4c, #912d46);
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    text-shadow: 2px 2px 0px #666666;
+    -webkit-box-shadow: 1px 1px 23px #666666;
+    -moz-box-shadow: 1px 1px 23px #666666;
+    box-shadow: 1px 1px 23px #666666;
+    color: #ffffff;
+    font-family: Georgia;
+    font-size: 20px;
+    padding: 5px 20px 5px 20px;
+    border: solid #1f628d 1px;
+    text-decoration: none;	
+    text-align: center;
+    display: block;
+    width: 280px;
+}
+
+.btnSignOut:hover 
+{
+    background: #d94343;
+    background-image: -webkit-linear-gradient(top, #d94343, #75111a);
+    background-image: -moz-linear-gradient(top, #d94343, #75111a);
+    background-image: -ms-linear-gradient(top, #d94343, #75111a);
+    background-image: -o-linear-gradient(top, #d94343, #75111a);
+    background-image: linear-gradient(to bottom, #d94343, #75111a);
+}
+
+.btnSignOut:active 
+{
+    position:relative;
+    top:1px;
+}
+
 html, body
 {
     width:100%;
