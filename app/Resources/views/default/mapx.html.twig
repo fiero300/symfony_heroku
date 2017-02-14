@@ -46,7 +46,7 @@
                 map = new google.maps.Map(document.getElementById('map'),
                         {
                             center: myLatLng,
-                            zoom: 13
+                            zoom: 12
                         });
                 map.addListener('dblclick', function (e)
                 {
@@ -54,8 +54,8 @@
                 });
             }
 
-            tempRef = firebase.database().ref().child('MARKERS');
-            tempRef.on("child_added", function (snapshot, prevChildKey)
+            marcadorRef = firebase.database().ref().child('MARKERS');
+            marcadorRef.on("child_added", function (snapshot, prevChildKey)
             {
                 var t = snapshot.val();
                 var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lon)};
@@ -67,6 +67,19 @@
                             animation: google.maps.Animation.DROP,
                             title: 'Marker ' + t.uid
                         });
+            });
+            marcadorRef.on("child_removed", function (snapshot, prevChildKey)
+            {
+                var t = snapshot.val();
+                var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lon)};
+                var marcador =new google.maps.Marker(
+                        {
+                            position: latLng,
+                            draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            title: 'Marker ' + t.uid
+                        });
+                marcador.setMap(null);        
             });
         </script>
         <table border="0" class="tabla2">
