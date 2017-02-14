@@ -58,11 +58,11 @@
             function eliminarMarcador(key)
             {
                 var updates = {};
-                updates['/MARCADORES_/' + key] = null;
+                updates['/' + Entity_Markers + '/' + key] = null;
                 firebase.database().ref().update(updates);
             }
 
-            marcadorRef = firebase.database().ref().child('MARCADORES_');
+            marcadorRef = firebase.database().ref().child(Entity_Markers);
             marcadorRef.on("child_added", function (snapshot, prevChildKey)
             {
                 var t = snapshot.val();

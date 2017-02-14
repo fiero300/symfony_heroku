@@ -1,5 +1,9 @@
 var status = 0;
 
+var Entity_Sites            = "SITIOS";
+var Entity_Markers          = "MARCADORES";
+var Entity_Markers_by_Sites = "MARCADORES_X_SITIO";
+
 var config = {
     apiKey: "AIzaSyCg_gZRScHBxqdjTpKqmcBTyaSp0ct5Hvo",
     authDomain: "posicionamiento-d0b1b.firebaseapp.com",
@@ -30,7 +34,6 @@ function iniciarSesion()
             {
                 status = 1;
                 window.location.href = "/mapx";
-//                console.log(result);
             }).catch(function (err)
             {
                 console.log("ERROR-> " + err.message);
@@ -40,13 +43,11 @@ function iniciarSesion()
         {
             firebase.auth().signOut();
         }
-//        console.log(firebase.auth());
     }
     catch (e)
     {
         console.log(e);
     }
-
 }
 
 document.getElementById("btnSignIn").addEventListener('click', iniciarSesion, false);

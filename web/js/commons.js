@@ -112,10 +112,9 @@ function writeNewMarker(lat, lon)
     try
     {
         user = firebase.auth().currentUser;
-        console.log(user);
         uid = user.uid;
 
-        var newMarkerKey = firebase.database().ref().child('MARKERS').push().key;
+        var newMarkerKey = firebase.database().ref().child(Entity_Markers).push().key;
         var markerData =
                 {
                     key: newMarkerKey,
@@ -125,7 +124,7 @@ function writeNewMarker(lat, lon)
                 };
 
         var updates = {};
-        updates['/MARKERS/' + newMarkerKey] = markerData;
+        updates['/' + Entity_Markers + '/' + newMarkerKey] = markerData;
         //updates['/USER-MARKERS/' + uid + '/' + newMarkerKey] = markerData;
 
         firebase.database().ref().update(updates);
