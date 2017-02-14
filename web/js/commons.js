@@ -110,7 +110,7 @@ function cerrarSesion()
 function writeNewMarker(lat, lon)
 {
     try {
-        user = firebase.auth();
+        user = firebase.auth().currentUser;
         console.log(user);
         uid = user.uid;
         console.log("uid-> " + uid);

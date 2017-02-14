@@ -29,8 +29,8 @@ function iniciarSesion()
             firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
             {
                 status = 1;
-//                window.location.href = "/mapx";
-                console.log(result);
+                window.location.href = "/mapx";
+//                console.log(result);
             }).catch(function (err)
             {
                 console.log("ERROR-> " + err.message);
@@ -40,7 +40,7 @@ function iniciarSesion()
         {
             firebase.auth().signOut();
         }
-        console.log(firebase.auth());
+//        console.log(firebase.auth());
     }
     catch (e)
     {
