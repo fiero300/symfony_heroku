@@ -72,7 +72,14 @@
                     console.log("Despues-> " + wi);
                 });
             }
-            
+            tempRef = firebase.database().ref().child('MARKERS');
+            tempRef.on("child_added", function (snapshot, prevChildKey)
+            {
+                var t = snapshot.val();
+                console.log(t);
+                console.log("----");
+            });
+
         </script>
         <table border="0" class="tabla2">
             <tr height="20%">
