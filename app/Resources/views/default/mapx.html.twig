@@ -59,9 +59,10 @@
             {
                 var t = snapshot.val();
                 console.log(t);
+                var latLng = {lat: t.lat, lng: t.lng};
                 new google.maps.Marker(
                         {
-                            position: {lat: t.lat, lng: t.lng},
+                            position: latLng,
                             map: map,
                             draggable: true,
                             title: 'Marker ' + t.uid
