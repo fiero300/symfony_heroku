@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 $loader = require __DIR__ . '/../app/autoload.php';
 include_once __DIR__ . '/../var/bootstrap.php.cache';
+require_once __DIR__ . '/../app/AppCache.php';
 
 // Enable APC for autoloading to improve performance.
 // You should change the ApcClassLoader first argument to a unique prefix
@@ -22,7 +23,6 @@ include_once __DIR__ . '/../var/bootstrap.php.cache';
 //    return $app['twig']->render('index.twig', array('app' => $app, "nombre" => "Alejandro"));
 //});
 
-//require_once __DIR__.'/../app/AppCache.php';
 
 $kernel = new AppKernel('prod', false);
 $kernel->loadClassCache();
