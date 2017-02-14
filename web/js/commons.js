@@ -111,7 +111,7 @@ function writeNewMarker(lat, lon)
 {
     try {
         user = firebase.auth();
-        console.log();
+        console.log(user);
         uid = user.uid;
         console.log("uid-> " + uid);
         console.log("lat-> " + lat);
