@@ -19,6 +19,7 @@
         <script type="text/javascript">
 
             var map;
+            var marcadores = new Array();
 
             firebase.auth().onAuthStateChanged(function (user)
             {
@@ -57,9 +58,11 @@
             marcadorRef = firebase.database().ref().child('MARKERS');
             marcadorRef.on("child_added", function (snapshot, prevChildKey)
             {
+                var marker = {};
                 var t = snapshot.val();
                 var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lon)};
-                new google.maps.Marker(
+
+                var marcador = new google.maps.Marker(
                         {
                             map: map,
                             position: latLng,
@@ -67,19 +70,25 @@
                             animation: google.maps.Animation.DROP,
                             title: 'Marker ' + t.uid
                         });
+                marker[t.key] = marcador;
+                marcadores.push(marker);
             });
+
             marcadorRef.on("child_removed", function (snapshot, prevChildKey)
             {
                 var t = snapshot.val();
-                var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lon)};
-                var marcador =new google.maps.Marker(
-                        {
-                            position: latLng,
-                            draggable: true,
-                            animation: google.maps.Animation.DROP,
-                            title: 'Marker ' + t.uid
-                        });
-                marcador.setMap(null);        
+                console.log("Se eliminará-> " + t.key);
+                delete marcadores[t.key];
+                
+                for (var i = 0; i < marcadores.length; i++)
+                {
+                    marcadores[i].setMap(null);
+                }
+                
+                for (var i = 0; i < marcadores.length; i++)
+                {
+                    marcadores[i].setMap(map);
+                }
             });
         </script>
         <table border="0" class="tabla2">
