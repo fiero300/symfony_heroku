@@ -63,21 +63,26 @@
 
                 map.addListener('dblclick', function (e)
                 {
+                    console.log("marcador creado");
                     var marker = new google.maps.Marker({
                         position: e.latLng,
                         map: map
                     });
-                    console.log("Antes");
-                    wi = writeNewMarker(myLatLng.lat, myLatLng.lng);
-                    console.log("Despues-> " + wi);
+                    writeNewMarker(e.latLng.lat, e.latLng.lng);
+                    map.removeOverlay(marker);
+                    console.log("marcador eliminado");
                 });
             }
             tempRef = firebase.database().ref().child('MARKERS');
             tempRef.on("child_added", function (snapshot, prevChildKey)
             {
                 var t = snapshot.val();
-                console.log(t);
-                console.log("----");
+                new google.maps.Marker(
+                        {
+                            position: {lat: t.lat, lng: t.lng},
+                            map: map
+                        });
+                console.log("marcador creado nuevamente");
             });
 
         </script>
