@@ -15,25 +15,7 @@
         <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
         <script src='/js/jquery.min.js'></script>
         <script src="/js/main.js"></script>        
-        <script src="/js/commons.js"></script>        
-        <table border="0" class="tabla2">
-            <tr height="20%">
-                <td>
-                </td>
-                <td>
-                    <span id="user-name">HOLA</span>                    
-                    <a id="btnSignOut" class="btnSignOut" href="javascript:void(0);" onclick="javascript:cerrarSesion();">Cerrar Sesi&oacute;n</a>
-                </td>
-                <td>
-                    <span id="user-name"></span>
-                </td>
-            </tr>
-            <tr height="80%">
-                <td colspan="3">
-                    <div id="map"></div>
-                </td>
-            </tr>
-        </table>
+        <script src="/js/commons.js"></script>
         <script type="text/javascript">
 
             //var userName = document.getElementById('user-name');
@@ -62,6 +44,7 @@
                 else
                 {
                     console.log("No hay sesión");
+                    alert("Se requiere Iniciar Sesión");
                     window.location.href = "/";
                 }
             });
@@ -84,6 +67,25 @@
                 });
             }
         </script>
+        <table border="0" class="tabla2">
+            <tr height="20%">
+                <td>
+                </td>
+                <td>
+                    <span id="user-name">HOLA</span>                    
+                    <a id="btnSignOut" class="btnSignOut" href="javascript:void(0);" onclick="javascript:cerrarSesion();">Cerrar Sesi&oacute;n</a>
+                </td>
+                <td>
+                    <span id="user-name"></span>
+                </td>
+            </tr>
+            <tr height="80%">
+                <td colspan="3">
+                    <div id="map"></div>
+                </td>
+            </tr>
+        </table>
+        
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkJj8aKgrTVqSmldMR5gwCxaSvuE_D7wk&callback=initMap">
         </script>
