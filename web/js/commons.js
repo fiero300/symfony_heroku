@@ -87,26 +87,34 @@ function iniciarSesion(strUser, strPassword)
 {
     console.log("iniciarSesion");
 	init();
-	firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
+    try
     {
-		/*
-		resultado = "";
-		for (var i in result) 
-		{
-			if (result.hasOwnProperty(i)) 
-			{
-				resultado +=  i + " = " + result[i] + "\n";
-			}
-		}
-		alert(resultado);
-		*/
-        console.log("OK");
-		window.location.href = "/mapx";
-        //window.location = "file:///C:/Users/since_000/Desktop/proy/maps.html";
-    }).catch(function (err)
-	{
-        console.log("ERROR-> " + err.code);
-	});
+        firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
+        {
+            /*
+            resultado = "";
+            for (var i in result) 
+            {
+                if (result.hasOwnProperty(i)) 
+                {
+                    resultado +=  i + " = " + result[i] + "\n";
+                }
+            }
+            alert(resultado);
+            */
+            console.log("OK");
+            window.location.href = "/mapx";
+            //window.location = "file:///C:/Users/since_000/Desktop/proy/maps.html";
+        }).catch(function (err)
+        {
+            console.log("ERROR-> " + err.code);
+        });
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
+	
 }
 
 function init()
