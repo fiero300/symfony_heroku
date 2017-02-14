@@ -85,15 +85,39 @@ function setHtmlCmp(objCmp, strHtml)
  */
 function iniciarSesion(strUser, strPassword)
 {
-    firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function ()
+	init();
+	firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
     {
-        window.location.href="/mapx";
-    }, function (error)
-    {
-        console.log(error.code);
-    });
+		/*
+		resultado = "";
+		for (var i in result) 
+		{
+			if (result.hasOwnProperty(i)) 
+			{
+				resultado +=  i + " = " + result[i] + "\n";
+			}
+		}
+		alert(resultado);
+		*/
+		window.location.href = "/maps.html";
+        //window.location = "file:///C:/Users/since_000/Desktop/proy/maps.html";
+    }).catch(function (err)
+	{
+		console.log("ERROR-> " + err.code);
+	});
 }
 
+function init()
+{
+	var config = {
+				apiKey: "AIzaSyCg_gZRScHBxqdjTpKqmcBTyaSp0ct5Hvo",
+				authDomain: "posicionamiento-d0b1b.firebaseapp.com",
+				databaseURL: "https://posicionamiento-d0b1b.firebaseio.com",
+				storageBucket: "posicionamiento-d0b1b.appspot.com",
+				messagingSenderId: "748730235011"
+			};
+	firebase.initializeApp(config);
+}
 /**
  * Funcion     : cerrarSesion().
  * Descripcion : Cierra la sesion actual del usuario si la hay.
