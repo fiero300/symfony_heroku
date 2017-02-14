@@ -76,7 +76,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a class="btnSignIn" href="javascript:void(0);" onclick="javascript:sesion();">Iniciar Sesi&oacute;n</a>
+                                <a class="btnSignIn" href="javascript:sesion();" onclick="javascript:sesion();">Iniciar Sesi&oacute;n</a>
                             </td>
                         </tr>
                     </table>
@@ -106,7 +106,10 @@
 <script>
     var strUser = $("#txt_usuario").val();
     var strPassword = $("#txt_clave").val();
-
+    
+    console.log(strUser);
+    console.log(strPassword);
+    
     function sesion()
 	{
 		iniciarSesion(strUser, strPassword);
