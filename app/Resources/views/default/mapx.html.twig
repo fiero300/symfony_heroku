@@ -64,12 +64,12 @@
                 map.addListener('dblclick', function (e)
                 {
                     console.log("marcador creado");
-                    console.log(e.latLng);
+                    console.log(e.latLng.lat());
                     var marker = new google.maps.Marker({
                         position: e.latLng,
                         map: map
                     });
-                    writeNewMarker(e.latLng.lat, e.latLng.lng);
+                    writeNewMarker(e.latLng.lat(), e.latLng.lng());
                     map.removeOverlay(marker);
                     console.log("marcador eliminado");
                 });
