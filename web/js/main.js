@@ -49,3 +49,4 @@ function iniciarSesion()
 
 }
 
+document.getElementById("btnSignIn").addEventListener('click', iniciarSesion, false);
