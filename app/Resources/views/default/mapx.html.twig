@@ -51,15 +51,14 @@
                 map.addListener('dblclick', function (e)
                 {
                     writeNewMarker(e.latLng.lat(), e.latLng.lng());
-                    console.log("marcador guardado en base");
                 });
             }
+
             tempRef = firebase.database().ref().child('MARKERS');
             tempRef.on("child_added", function (snapshot, prevChildKey)
             {
                 var t = snapshot.val();
-                console.log(t);
-                var latLng = {lat: t.lat, lng: t.lng};
+                var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lng)};
                 new google.maps.Marker(
                         {
                             position: latLng,
@@ -67,7 +66,6 @@
                             draggable: true,
                             title: 'Marker ' + t.uid
                         });
-                console.log("marcador creado");
             });
         </script>
         <table border="0" class="tabla2">
