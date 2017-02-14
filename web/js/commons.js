@@ -85,6 +85,7 @@ function setHtmlCmp(objCmp, strHtml)
  */
 function iniciarSesion(strUser, strPassword)
 {
+    console.log("iniciarSesion");
 	init();
 	firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
     {
@@ -99,16 +100,18 @@ function iniciarSesion(strUser, strPassword)
 		}
 		alert(resultado);
 		*/
-		window.location.href = "/maps.html";
+        console.log("OK");
+		window.location.href = "/mapx";
         //window.location = "file:///C:/Users/since_000/Desktop/proy/maps.html";
     }).catch(function (err)
 	{
-		console.log("ERROR-> " + err.code);
+        console.log("ERROR-> " + err.code);
 	});
 }
 
 function init()
 {
+    console.log("init");
 	var config = {
 				apiKey: "AIzaSyCg_gZRScHBxqdjTpKqmcBTyaSp0ct5Hvo",
 				authDomain: "posicionamiento-d0b1b.firebaseapp.com",
