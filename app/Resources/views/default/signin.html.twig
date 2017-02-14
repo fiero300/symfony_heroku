@@ -6,14 +6,13 @@
         <title>MAPX Login</title>
     </head>
 
-    <body style="color: white;">
+    {% block body %}
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
         <script src='/js/jquery.min.js'></script> 
         <script src="/js/commons.js"></script>
         <table border="0" class="tabla1">     
             <tr height="20%">
                 <td>
-                   
                 </td>
                 <td>
                     <table border="0" class="tabla2">
@@ -36,7 +35,7 @@
             </tr>	
         </table>
     </td>
-<td></td>
+    <td></td>
 </tr>
 
 <tr>
@@ -74,7 +73,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a id="btnSignIn" class="btnSignIn" href="/mapx"><span>Iniciar Sesi&oacute;n</span></a>
+                                <a class="btnSignIn" href="/mapx"><span>Iniciar Sesi&oacute;n</span></a>
                             </td>
                         </tr>
                     </table>
@@ -100,15 +99,6 @@
     <td></td>
 </tr>
 </table>
-<script>
-    $('#btnSignIn').click(function ()
-    {
-        var strUser = $("#txt_usuario").val();
-        var strPassword = $("#txt_clave").val();
-        iniciarSesion(strUser, strPassword);
-        return false;
-    });
-</script>
-</body>
+{% endblock %}
 
 {% endblock %}
