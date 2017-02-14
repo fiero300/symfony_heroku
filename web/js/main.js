@@ -19,12 +19,8 @@ firebase.initializeApp(config);
 function iniciarSesion()
 {
     status = 0;
-    console.log("iniciarSesion");
     var strUser = $("#txt_usuario").val();
     var strPassword = $("#txt_clave").val();
-
-    console.log(strUser);
-    console.log(strPassword);
 
     try
     {
@@ -33,7 +29,8 @@ function iniciarSesion()
             firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
             {
                 status = 1;
-                window.location.href = "/mapx";
+//                window.location.href = "/mapx";
+                console.log(result);
             }).catch(function (err)
             {
                 console.log("ERROR-> " + err.message);
@@ -43,6 +40,7 @@ function iniciarSesion()
         {
             firebase.auth().signOut();
         }
+        console.log(firebase.auth());
     }
     catch (e)
     {

@@ -20,7 +20,6 @@
 
             //var userName = document.getElementById('user-name');
             var map;
-            console.log(firebase.auth().currentUser);
             /*
              if (!firebase.auth().currentUser)
              {
@@ -37,20 +36,17 @@
             {
                 if (user)
                 {
-                    console.log("SIII hay sesión");
-                    //userName.textContent = user.email;
                     setHtmlCmp("user-name", user.email);
                 }
                 else
                 {
-                    alert("No hay sesión" + status);
                     if (status == 0)
                     {
-                        alert("Se requiere Iniciar Sesión");
+                        alert("SE REQUIERE INICIAR SESIÓN");
                     }
                     else if (status == 2)
                     {
-                        alert("Gracias por utilizar nuestro servicio");
+                        alert("GRACIAS POR UTILIZAR NUESTRO SERVICIO");
                     }
                     window.location.href = "/";
                 }
@@ -79,7 +75,7 @@
                 <td>
                 </td>
                 <td>
-                    <span id="user-name">HOLA</span>                    
+                    <span id="user-name"></span>                    
                     <a id="btnSignOut" class="btnSignOut" href="javascript:void(0);" onclick="javascript:cerrarSesion();">Cerrar Sesi&oacute;n</a>
                 </td>
                 <td>
