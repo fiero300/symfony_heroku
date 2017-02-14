@@ -76,7 +76,7 @@ function setHtmlCmp(objCmp, strHtml)
         $("#" + objCmp).html(strHtml);
     }
 }
-
+/*
 function init()
 {
 	var config = {
@@ -88,6 +88,8 @@ function init()
 			};
 	firebase.initializeApp(config);
 }
+*/
+
 /**
  * Funcion     : cerrarSesion().
  * Descripcion : Cierra la sesion actual del usuario si la hay.
@@ -96,6 +98,7 @@ function init()
  */
 function cerrarSesion()
 {
+    /*
     firebase.auth().signOut().then(function ()
     {
         document.location.href="/";
@@ -103,4 +106,5 @@ function cerrarSesion()
     {
         console.log(error.code);
     });
+    */
 }
