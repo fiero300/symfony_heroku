@@ -25,7 +25,11 @@ function iniciarSesion()
 
     try
     {
-        if (!firebase.auth().currentUser)
+        console.log("Antes");
+        firebase.auth().signOut();
+        console.log("Despues");
+        
+        if (firebase.auth().currentUser)
         {
             firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
             {
