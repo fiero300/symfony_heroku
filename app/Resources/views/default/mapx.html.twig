@@ -67,8 +67,9 @@
                         position: e.latLng,
                         map: map
                     });
-                    
-                    writeNewMarker(myLatLng.lat, myLatLng.lng);
+                    console.log("Antes");
+                    wi = writeNewMarker(myLatLng.lat, myLatLng.lng);
+                    console.log("Despues-> " + wi);
                 });
             }
             

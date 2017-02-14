@@ -109,20 +109,30 @@ function cerrarSesion()
 
 function writeNewMarker(lat, lon)
 {
-    uid = firebase.auth().uid;
+    try {
 
-    var markerData =
-            {
-                uid: uid,
-                lat: lat,
-                lon: lon
-            };
+        uid = firebase.auth().uid;
+        console.log("uid-> " + uid);
+        console.log("lat-> " + lat);
+        console.log("lon-> " + lon);
+        var markerData =
+                {
+                    uid: uid,
+                    lat: lat,
+                    lon: lon
+                };
 
-    var newMarkerKey = firebase.database().ref().child('MARKERS').push().key;
+        var newMarkerKey = firebase.database().ref().child('MARKERS').push().key;
+        console.log("key-> " + newMarkerKey);
 
-    var updates = {};
-    updates['/MARKERS/' + newMarkerKey] = markerData;
-    //updates['/USER-MARKERS/' + uid + '/' + newMarkerKey] = markerData;
+        var updates = {};
+        updates['/MARKERS/' + newMarkerKey] = markerData;
+        //updates['/USER-MARKERS/' + uid + '/' + newMarkerKey] = markerData;
 
-    return firebase.database().ref().update(updates);
+        firebase.database().ref().update(updates);
+
+    }catch(e)
+    {
+        console.log(e);
+    }
 }
