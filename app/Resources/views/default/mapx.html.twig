@@ -71,6 +71,9 @@
                             title: 'Marker ' + t.uid
                         });
                 marker[t.key] = marcador;
+
+                console.log("marker");
+                console.log(marker);
                 marcadores.push(marker);
             });
 
@@ -78,17 +81,21 @@
             {
                 var t = snapshot.val();
 
+                console.log("marcadores");
+                console.log(marcadores);
                 for (var k in marcadores)
                 {
                     if (marcadores.hasOwnProperty(k))
                     {
+                        console.log("k-> " + k);
+                        console.log("marcadores[k]-> " + marcadores[k]);
                         marcadores[k].setMap(null);
                     }
                 }
-                
+
                 console.log("Se eliminará-> " + t.key);
                 delete marcadores[t.key];
-                
+
                 for (var k in marcadores)
                 {
                     if (marcadores.hasOwnProperty(k))
