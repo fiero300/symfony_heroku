@@ -14,7 +14,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('signin.html.twig', array(
+        return $this->render('default/signin.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }
@@ -33,7 +33,7 @@ class DefaultController extends Controller
     /**
      * @Route("/registro", name="registro")
      */
-    public function singupAction(Request $request)
+    public function registroAction(Request $request)
     {
         // replace this example code with whatever you need
         return $this->render('signup.html.twig', array(
