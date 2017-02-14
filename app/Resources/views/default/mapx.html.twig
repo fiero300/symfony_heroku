@@ -39,6 +39,7 @@
             //var userName = document.getElementById('user-name');
             var map;
             console.log(firebase.auth().currentUser);
+            /*
             if (!firebase.auth().currentUser)
             {
                 //firebase.auth().signOut();
@@ -48,27 +49,8 @@
             {
                 setHtmlCmp("user-name", firebase.auth().currentUser.email);
             }
+            */
 
-            //dataBase = firebase.database();
-            //userConected = dataBase.ref('/SG_USUARIOS');
-
-            //userConected.on('child_added', function(data){});
-            /*
-             
-             var newPostKey = userConected.child('SG_USUARIOS').push().key;
-             
-             
-             firebase.database().ref('SG_USUARIOS/'+newPostKey).set({
-             NOMBRE: "4_ISI Lovelace",
-             EMAIL: "isi@gmail.com"
-             }).catch(function (err)
-             {
-             strCodigoError = err.code;
-             strMensajeError = err.message;
-             alert(strCodigoError);
-             });
-             
-             */
             firebase.auth().onAuthStateChanged(function (user)
             {
                 if (user)
@@ -80,6 +62,7 @@
                 else
                 {
                     console.log("No hay sesión");
+                    window.location.href = "/";
                 }
             });
 
