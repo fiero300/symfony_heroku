@@ -128,6 +128,7 @@ function init()
 				messagingSenderId: "748730235011"
 			};
 	firebase.initializeApp(config);
+    console.log("init-ok");
 }
 /**
  * Funcion     : cerrarSesion().
