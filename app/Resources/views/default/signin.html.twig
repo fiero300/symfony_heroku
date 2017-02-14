@@ -8,8 +8,9 @@
 
     {% block body %}
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
-        <script src='/js/jquery.min.js'></script> 
+        <script src="/js/main.js"></script>
         <script src="/js/commons.js"></script>
+        <script src='/js/jquery.min.js'></script> 
         <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
         <table border="0" class="tabla1">     
             <tr height="20%">
@@ -77,7 +78,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a class="btnSignIn" href="javascript:void(0);" onclick="javascript:sesion();">Iniciar Sesi&oacute;n</a>
+                                <a id="btnSignIn" class="btnSignIn" href="javascript:void(0);">Iniciar Sesi&oacute;n</a>
                             </td>
                         </tr>
                     </table>
@@ -105,17 +106,14 @@
 </table>
 
 <script type='text/javascript'>
-    var strUser = $("#txt_usuario").val();
-    var strPassword = $("#txt_clave").val();
-    
-    console.log(strUser);
-    console.log(strPassword);
+   
+    {#
     
     function sesion()
 	{
         console.log("Sesion Ok");
 		iniciarSesion(strUser, strPassword);
-	}
+	}#}
 </script>
 {% endblock %}
 

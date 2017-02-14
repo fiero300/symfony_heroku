@@ -15,7 +15,7 @@
         <script src='/js/jquery.min.js'></script>
         <script src="/js/commons.js"></script>        
         <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
-        <table border="1" class="tabla2">
+        <table border="0" class="tabla2">
             <tr height="20%">
                 <td>
                     <span id="user-name"></span>
@@ -32,7 +32,7 @@
             //var userName = document.getElementById('user-name');
             var map;
             // Inicialización de Firebase
-            /*
+            
              var config = {
              apiKey: "AIzaSyCg_gZRScHBxqdjTpKqmcBTyaSp0ct5Hvo",
              authDomain: "posicionamiento-d0b1b.firebaseapp.com",
@@ -41,13 +41,17 @@
              messagingSenderId: "748730235011"
              };
              firebase.initializeApp(config);
-             */
+             
 
             console.log("Usuario-> " + firebase.auth().currentUser);
             if (!firebase.auth().currentUser)
             {
                 firebase.auth().signOut();
-                window.location.href="/";
+                window.location.href = "/";
+            }
+            else
+            {
+                alert("Usuario-> " + firebase.auth().currentUser);
             }
 
             //dataBase = firebase.database();

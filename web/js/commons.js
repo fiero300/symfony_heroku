@@ -77,49 +77,8 @@ function setHtmlCmp(objCmp, strHtml)
     }
 }
 
-/**
- * Funcion     : iniciarSesion().
- * Descripcion : Inicia la sesion del usuario.
- * Versión     : 1.0 - 11/02/2017 -> "Creacion".
- * @author Alejandro Domínguez Vargas
- */
-function iniciarSesion(strUser, strPassword)
-{
-    console.log("iniciarSesion");
-	init();
-    try
-    {
-        firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
-        {
-            /*
-            resultado = "";
-            for (var i in result) 
-            {
-                if (result.hasOwnProperty(i)) 
-                {
-                    resultado +=  i + " = " + result[i] + "\n";
-                }
-            }
-            alert(resultado);
-            */
-            console.log("OK");
-            window.location.href = "/mapx";
-            //window.location = "file:///C:/Users/since_000/Desktop/proy/maps.html";
-        }).catch(function (err)
-        {
-            console.log("ERROR-> " + err.code);
-        });
-    }
-    catch(e)
-    {
-        console.log(e);
-    }
-	
-}
-
 function init()
 {
-    console.log("init");
 	var config = {
 				apiKey: "AIzaSyCg_gZRScHBxqdjTpKqmcBTyaSp0ct5Hvo",
 				authDomain: "posicionamiento-d0b1b.firebaseapp.com",
@@ -128,7 +87,6 @@ function init()
 				messagingSenderId: "748730235011"
 			};
 	firebase.initializeApp(config);
-    console.log("init-ok");
 }
 /**
  * Funcion     : cerrarSesion().
