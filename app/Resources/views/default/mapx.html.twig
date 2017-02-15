@@ -35,10 +35,10 @@
                 });
             }
 
-            function eliminarActualizarMarcador(key, val)
+            function eliminarMarcador(key)
             {
                 var updates = {};
-                updates['/' + Entity_Markers + '/' + key] = val;
+                updates['/' + Entity_Markers + '/' + key] = null;
                 firebase.database().ref().update(updates);
 
                 var thingToRemove = document.getElementById(key);
@@ -46,6 +46,7 @@
             }
 
         </script>
+
         <table border="0" class="tabla1">     
             <tr height="20%">
                 <td>
@@ -117,7 +118,9 @@
                 </td>
                 <td></td>
             </tr>
+
         </table>
+
         <script type="text/javascript">
             marcadorRef = firebase.database().ref().child(Entity_Markers);
 
@@ -143,6 +146,7 @@
                                             animation: google.maps.Animation.DROP,
                                             title: 'Marker ' + t.uid
                                         });
+
                                 marcadores[t.key] = marcador;
                                 var tblMarcadores = document.getElementById("tblMarcadores");
                                 var row = tblMarcadores.insertRow(-1);
@@ -150,12 +154,37 @@
                                 row.class = "" + t.key;
                                 var cell1 = row.insertCell(0);
                                 var cell2 = row.insertCell(1);
+                                
+                                var str1 = "<table border='0' class='tabla2'>" +
+                                            "<tr>" +
+                                            "	<td >" +
+                                            "		Ubicación:" +
+                                            "	</td>" +
+                                            "	<td>" +
+                                            t.key +
+                                            "	</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "	<td>" +
+                                            "		Coordenadas:" +
+                                            "	</td>" +
+                                            "	<td>" +
+                                            t.lat +
+                                            "	</td>" +
+                                            "</tr>" +
+                                            "<tr>" +
+                                            "	<td>" +
+                                            "    </td>" +
+                                            "	<td>" +
+                                            t.lon +
+                                            "	</td>" +
+                                            "</tr>" +
+                                            "</table><br/><br/>";
 
-                                var str1 = "Ubicación: " + t.key + "<br/> Coordenadas: " + t.lat + "<br/> &#09;&#09;" + t.lon + "<br/>";
+                                var str2 = "<a href='javascript:void(0);' " +
+                                        "onclick='javascript:eliminarMarcador(\"" + t.key + "\");'> " +
+                                        "delete</a>";
 
-                                var str2 = "<a href='javascript:void(0);' "+
-                                           "onclick='javascript:eliminarActualizarMarcador(\"" + t.key + "\");'>\n\
-                                                delete</a>";
                                 cell1.innerHTML = str1;
                                 cell2.innerHTML = str2;
 

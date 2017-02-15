@@ -32,9 +32,10 @@ function iniciarSesion()
         
         if (!firebase.auth().currentUser)
         {
-            visibilidadCmp("msg_error", 1);
+            
             if (strUser === '' || strUser.trim === '' || strUser === null)
             {
+                visibilidadCmp("msg_error", 1);
                 setHtmlCmp("lbl_error", "ERROR! Usuario Inválido.");
             }
             else
@@ -46,8 +47,8 @@ function iniciarSesion()
                     window.location.href = "/mapx";
                 }).catch(function (err)
                 {
-                    console.log(err);
-
+                    visibilidadCmp("msg_error", 1);
+                    
                     strCodigoError = err.code;
                     strMensajeError = err.message;
 
