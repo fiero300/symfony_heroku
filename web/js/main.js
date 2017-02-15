@@ -1,7 +1,7 @@
 var status = 0;
 
-var Entity_Sites            = "SITIOS";
-var Entity_Markers          = "MARCADORES";
+var Entity_Sites = "SITIOS";
+var Entity_Markers = "MARCADORES";
 var Entity_Markers_by_Sites = "MARCADORES_X_SITIO";
 
 var config = {
@@ -30,14 +30,48 @@ function iniciarSesion()
     {
         if (!firebase.auth().currentUser)
         {
-            firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
+            if (strUsuario === '' || strUsuario.trim === '' || strUsuario === null)
             {
-                status = 1;
-                window.location.href = "/mapx";
-            }).catch(function (err)
+                setHtmlCmp("lbl_error", "ERROR! Usuario Inválido.");
+            }
+            else
             {
-                console.log("ERROR-> " + err.message);
-            });
+                firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
+                {
+                    status = 1;
+                    window.location.href = "/mapx";
+                }).catch(function (err)
+                {
+                    console.log(err);
+                    cambiarClaseCmp("msg_error", "alert");
+                    visibilidadCmp("msg_error", 1);
+
+                    strCodigoError = err.code;
+                    strMensajeError = err.message;
+
+                    if (strCodigoError === 'auth/invalid-email')
+                    {
+                        setHtmlCmp("lbl_error", "ERROR! La dirección de correo electrónico incorrecta.");
+                    }
+                    else if (strCodigoError === 'auth/user-not-found')
+                    {
+                        setHtmlCmp("lbl_error", "ERROR! No hay registro de usuario correspondiente a este identificador. " +
+                                "El usuario puede haber sido eliminado.");
+                    }
+                    else if (strCodigoError === 'auth/wrong-password')
+                    {
+                        setHtmlCmp("lbl_error", "ERROR! La contraseña no es válida o el usuario no tiene una contraseña.");
+                    }
+                    else if (strCodigoError === 'auth/invalid-api-key')
+                    {
+                        setHtmlCmp("lbl_error", "ERROR! Su clave de API no es válida.");
+                    }
+                    else
+                    {
+                        setHtmlCmp("lbl_error", "ERROR! " + strMensajeError);
+                    }
+                });
+            }
         }
         else
         {

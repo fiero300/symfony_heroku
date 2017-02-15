@@ -35,13 +35,12 @@
                 });
             }
 
-            function eliminarMarcador(key)
+            function eliminarActualizarMarcador(key, val)
             {
                 var updates = {};
-                updates['/' + Entity_Markers + '/' + key] = null;
+                updates['/' + Entity_Markers + '/' + key] = val;
                 firebase.database().ref().update(updates);
 
-                console.log(key);
                 var thingToRemove = document.getElementById(key);
                 thingToRemove.parentNode.removeChild(thingToRemove);
             }
@@ -157,9 +156,9 @@
 
                                 var str1 = "Ubicación: " + t.key + "<br/> Coordenadas: " + t.lat + "<br/> &#09;&#09;" + t.lon + "<br/>";
 
-                                var str2 = "<a href='javascript:void(0);' onclick='javascript:eliminarMarcador(\"" + t.key + "\");'>delete</a>";
-                                console.log(str1);
-                                console.log(str2);
+                                var str2 = "<a href='javascript:void(0);' "+
+                                           "onclick='javascript:eliminarActualizarMarcador(\"" + t.key + "\");'>\n\
+                                                delete</a>";
                                 cell1.innerHTML = str1;
                                 cell2.innerHTML = str2;
 
