@@ -69,7 +69,7 @@
             user = firebase.auth().currentUser;
             console.log(user.uid);
             marcadorRef = firebase.database().ref().child(Entity_Markers);
-            marcadorRef.orderByChild('uid').equalTo(""+user.uid).on("child_added", function (snapshot)
+            marcadorRef.on("child_added", function (snapshot)
             {
                 var t = snapshot.val();
                 var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lon)};
