@@ -67,7 +67,7 @@
             }
 
             marcadorRef = firebase.database().ref().child(Entity_Markers);
-            
+            alert(user_id);
             marcadorRef.orderByChild('uid').equalTo("FNnVuUe2DHYtjmluSPZGuFqFhir2").
                     on("child_added", function (snapshot, prevChildKey)
             {
