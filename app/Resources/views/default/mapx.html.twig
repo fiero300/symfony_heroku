@@ -46,65 +46,6 @@
                 thingToRemove.parentNode.removeChild(thingToRemove);
             }
 
-            marcadorRef = firebase.database().ref().child(Entity_Markers);
-            alert(user_id);
-            marcadorRef.orderByChild('uid').equalTo("FNnVuUe2DHYtjmluSPZGuFqFhir2").
-                    on("child_added", function (snapshot, prevChildKey)
-                    {
-                        var t = snapshot.val();
-                        var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lon)};
-
-                        var marcador = new google.maps.Marker(
-                                {
-                                    map: map,
-                                    position: latLng,
-                                    draggable: true,
-                                    animation: google.maps.Animation.DROP,
-                                    title: 'Marker ' + t.uid
-                                });
-                        marcadores[t.key] = marcador;
-                        var tblMarcadores = document.getElementById("tblMarcadores");
-                        var row = tblMarcadores.insertRow(-1);
-                        row.id = "" + t.key;
-                        row.class = "" + t.key;
-                        var cell1 = row.insertCell(0);
-                        var cell2 = row.insertCell(1);
-
-                        var str1 = "Ubicación: " + t.key + "<br/> Coordenadas: " + t.lat + "<br/> &#09;&#09;" + t.lon + "<br/>";
-
-                        var str2 = "<a href='javascript:void(0);' onclick='javascript:eliminarMarcador(\"" + t.key + "\");'>delete</a>";
-                        console.log(str1);
-                        console.log(str2);
-                        cell1.innerHTML = str1;
-                        cell2.innerHTML = str2;
-
-                    });
-
-            marcadorRef.on("child_removed", function (snapshot, prevChildKey)
-            {
-                var t = snapshot.val();
-
-                console.log("marcadores");
-                console.log(marcadores);
-                for (var k in marcadores)
-                {
-                    if (marcadores.hasOwnProperty(k))
-                    {
-                        marcadores[k].setMap(null);
-                    }
-                }
-
-                console.log("Se eliminará-> " + t.key);
-                delete marcadores[t.key];
-
-                for (var k in marcadores)
-                {
-                    if (marcadores.hasOwnProperty(k))
-                    {
-                        marcadores[k].setMap(map);
-                    }
-                }
-            });
         </script>
         <table border="0" class="tabla1">     
             <tr height="20%">
@@ -187,10 +128,9 @@
                 if (user)
                 {
                     console.log(user);
-                    user_id = user['uid'];
-                    console.log(user_id);
-                    console.log(user['email']);
+                    user_id = user.uid;
                     console.log(user.email);
+                    console.log(user_id);
                     //document.getElementById("user-name").innerHTML(user['email']);
                     setHtmlCmp("user-name", user.email);
                 }
@@ -205,6 +145,66 @@
                         alert("GRACIAS POR UTILIZAR NUESTRO SERVICIO");
                     }
                     window.location.href = "/";
+                }
+            });
+            
+            marcadorRef = firebase.database().ref().child(Entity_Markers);
+            console.log(user_id);
+            marcadorRef.orderByChild('uid').equalTo(user_id).
+                    on("child_added", function (snapshot, prevChildKey)
+                    {
+                        var t = snapshot.val();
+                        var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lon)};
+
+                        var marcador = new google.maps.Marker(
+                                {
+                                    map: map,
+                                    position: latLng,
+                                    draggable: true,
+                                    animation: google.maps.Animation.DROP,
+                                    title: 'Marker ' + t.uid
+                                });
+                        marcadores[t.key] = marcador;
+                        var tblMarcadores = document.getElementById("tblMarcadores");
+                        var row = tblMarcadores.insertRow(-1);
+                        row.id = "" + t.key;
+                        row.class = "" + t.key;
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+
+                        var str1 = "Ubicación: " + t.key + "<br/> Coordenadas: " + t.lat + "<br/> &#09;&#09;" + t.lon + "<br/>";
+
+                        var str2 = "<a href='javascript:void(0);' onclick='javascript:eliminarMarcador(\"" + t.key + "\");'>delete</a>";
+                        console.log(str1);
+                        console.log(str2);
+                        cell1.innerHTML = str1;
+                        cell2.innerHTML = str2;
+
+                    });
+
+            marcadorRef.on("child_removed", function (snapshot, prevChildKey)
+            {
+                var t = snapshot.val();
+
+                console.log("marcadores");
+                console.log(marcadores);
+                for (var k in marcadores)
+                {
+                    if (marcadores.hasOwnProperty(k))
+                    {
+                        marcadores[k].setMap(null);
+                    }
+                }
+
+                console.log("Se eliminará-> " + t.key);
+                delete marcadores[t.key];
+
+                for (var k in marcadores)
+                {
+                    if (marcadores.hasOwnProperty(k))
+                    {
+                        marcadores[k].setMap(map);
+                    }
                 }
             });
         </script>
