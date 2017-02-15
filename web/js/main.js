@@ -34,7 +34,6 @@ function iniciarSesion()
             firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
             {
                 status = 1;
-                user_id = result['uid'];
                 window.location.href = "/mapx";
             }).catch(function (err)
             {
