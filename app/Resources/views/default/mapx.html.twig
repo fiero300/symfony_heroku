@@ -21,31 +21,6 @@
             var map;
             var marcadores = new Object();
 
-            firebase.auth().onAuthStateChanged(function (user)
-            {
-                if (user)
-                {
-                    console.log(user);
-                    user_id = user['uid'];
-                    console.log(user_id);
-                    console.log(user['email']);
-                    document.getElementById("user-name").innerHTML(user['email']);
-                    //setHtmlCmp("user-name", user.email);
-                }
-                else
-                {
-                    if (status == 0)
-                    {
-                        alert("SE REQUIERE INICIAR SESIÓN");
-                    }
-                    else if (status == 2)
-                    {
-                        alert("GRACIAS POR UTILIZAR NUESTRO SERVICIO");
-                    }
-                    window.location.href = "/";
-                }
-            });
-
             function initMap()
             {
                 var myLatLng = {lat: -2.183004360911292, lng: -79.92313385009766};
@@ -75,35 +50,35 @@
             alert(user_id);
             marcadorRef.orderByChild('uid').equalTo("FNnVuUe2DHYtjmluSPZGuFqFhir2").
                     on("child_added", function (snapshot, prevChildKey)
-            {
-                var t = snapshot.val();
-                var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lon)};
+                    {
+                        var t = snapshot.val();
+                        var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lon)};
 
-                var marcador = new google.maps.Marker(
-                        {
-                            map: map,
-                            position: latLng,
-                            draggable: true,
-                            animation: google.maps.Animation.DROP,
-                            title: 'Marker ' + t.uid
-                        });
-                marcadores[t.key] = marcador;
-                var tblMarcadores = document.getElementById("tblMarcadores");
-                var row = tblMarcadores.insertRow(-1);
-                row.id = "" + t.key;
-                row.class = "" + t.key;
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
+                        var marcador = new google.maps.Marker(
+                                {
+                                    map: map,
+                                    position: latLng,
+                                    draggable: true,
+                                    animation: google.maps.Animation.DROP,
+                                    title: 'Marker ' + t.uid
+                                });
+                        marcadores[t.key] = marcador;
+                        var tblMarcadores = document.getElementById("tblMarcadores");
+                        var row = tblMarcadores.insertRow(-1);
+                        row.id = "" + t.key;
+                        row.class = "" + t.key;
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
 
-                var str1 = "Ubicación: " + t.key + "<br/> Coordenadas: " + t.lat + "<br/> &#09;&#09;" + t.lon + "<br/>";
+                        var str1 = "Ubicación: " + t.key + "<br/> Coordenadas: " + t.lat + "<br/> &#09;&#09;" + t.lon + "<br/>";
 
-                var str2 = "<a href='javascript:void(0);' onclick='javascript:eliminarMarcador(\"" + t.key + "\");'>delete</a>";
-                console.log(str1);
-                console.log(str2);
-                cell1.innerHTML = str1;
-                cell2.innerHTML = str2;
+                        var str2 = "<a href='javascript:void(0);' onclick='javascript:eliminarMarcador(\"" + t.key + "\");'>delete</a>";
+                        console.log(str1);
+                        console.log(str2);
+                        cell1.innerHTML = str1;
+                        cell2.innerHTML = str2;
 
-            });
+                    });
 
             marcadorRef.on("child_removed", function (snapshot, prevChildKey)
             {
@@ -206,7 +181,33 @@
                 <td></td>
             </tr>
         </table>
-
+        <script type="text/javascript">
+            firebase.auth().onAuthStateChanged(function (user)
+            {
+                if (user)
+                {
+                    console.log(user);
+                    user_id = user['uid'];
+                    console.log(user_id);
+                    console.log(user['email']);
+                    console.log(user.email);
+                    //document.getElementById("user-name").innerHTML(user['email']);
+                    setHtmlCmp("user-name", user.email);
+                }
+                else
+                {
+                    if (status == 0)
+                    {
+                        alert("SE REQUIERE INICIAR SESIÓN");
+                    }
+                    else if (status == 2)
+                    {
+                        alert("GRACIAS POR UTILIZAR NUESTRO SERVICIO");
+                    }
+                    window.location.href = "/";
+                }
+            });
+        </script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkJj8aKgrTVqSmldMR5gwCxaSvuE_D7wk&callback=initMap">
         </script>
