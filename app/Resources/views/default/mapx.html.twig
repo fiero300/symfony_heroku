@@ -60,6 +60,10 @@
                 var updates = {};
                 updates['/' + Entity_Markers + '/' + key] = null;
                 firebase.database().ref().update(updates);
+
+                console.log(""+key);
+                var thingToRemove = document.querySelectorAll("" + key)[0];
+                thingToRemove.parentNode.removeChild(thingToRemove);
             }
 
             marcadorRef = firebase.database().ref().child(Entity_Markers);
@@ -79,7 +83,8 @@
                 marcadores[t.key] = marcador;
                 var tblMarcadores = document.getElementById("tblMarcadores");
                 var row = tblMarcadores.insertRow(-1);
-                row.id = ""+t.key;
+                row.id = "" + t.key;
+                row.class = "" + t.key;
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
 
