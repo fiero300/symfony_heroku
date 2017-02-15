@@ -26,7 +26,6 @@
                 if (user)
                 {
                     setHtmlCmp("user-name", user.email);
-                    uid = user.uid;
                 }
                 else
                 {
@@ -66,10 +65,9 @@
                 var thingToRemove = document.getElementById(key);
                 thingToRemove.parentNode.removeChild(thingToRemove);
             }
-            user = firebase.auth().currentUser;
-            console.log(user.uid);
+
             marcadorRef = firebase.database().ref().child(Entity_Markers);
-            marcadorRef.on("child_added", function (snapshot)
+            marcadorRef.on("child_added", function (snapshot, prevChildKey)
             {
                 var t = snapshot.val();
                 var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lon)};
