@@ -79,12 +79,13 @@
                 marcadores[t.key] = marcador;
                 var tblMarcadores = document.getElementById("tblMarcadores");
                 var row = tblMarcadores.insertRow(-1);
+                row.id = ""+t.key;
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
 
                 var str1 = "Ubicación: " + t.key + "<br/><br/> Coordenadasy " + t.lat + ", " + t.lon;
 
-                var str2 = "<a href='javascript:void(0);' onclick='javascript:eliminarMarcador(" + t.key + ");'>delete</a>";
+                var str2 = "<a href='javascript:void(0);' onclick='javascript:eliminarMarcador(\'" + t.key + "\');'>delete</a>";
                 console.log(str1);
                 console.log(str2);
                 cell1.innerHTML = str1;
@@ -159,7 +160,7 @@
         <table border="0" class="tabla2">  
             <tr height="50%">
                 <td width="20%">
-                    <table id="tblMarcadores" class=""> 
+                    <table border="1" id="tblMarcadores" class=""> 
                     </table>
                 </td>
                 <td>
