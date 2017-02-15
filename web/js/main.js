@@ -37,7 +37,7 @@ function iniciarSesion()
 //                user_id = result.user
                 
                 console.log(result);
-                window.location.href = "/mapx";
+//                window.location.href = "/mapx";
             }).catch(function (err)
             {
                 console.log("ERROR-> " + err.message);
