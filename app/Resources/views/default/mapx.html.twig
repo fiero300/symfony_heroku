@@ -61,8 +61,8 @@
                 updates['/' + Entity_Markers + '/' + key] = null;
                 firebase.database().ref().update(updates);
 
-                console.log(""+key);
-                var thingToRemove = document.querySelectorAll("" + key)[0];
+                console.log(key);
+                var thingToRemove = document.querySelectorAll(key)[0];
                 thingToRemove.parentNode.removeChild(thingToRemove);
             }
 
@@ -90,7 +90,7 @@
 
                 var str1 = "Ubicación: " + t.key + "<br/><br/> Coordenadasy " + t.lat + ", " + t.lon;
 
-                var str2 = "<a href='javascript:void(0);' onclick='javascript:eliminarMarcador(\'" + t.key + "\');'>delete</a>";
+                var str2 = "<a href='javascript:void(0);' onclick='javascript:eliminarMarcador(\"" + t.key + "\");'>delete</a>";
                 console.log(str1);
                 console.log(str2);
                 cell1.innerHTML = str1;
