@@ -1,5 +1,6 @@
 var status = 0;
 
+var user_id                 = null;
 var Entity_Sites            = "SITIOS";
 var Entity_Markers          = "MARCADORES";
 var Entity_Markers_by_Sites = "MARCADORES_X_SITIO";
@@ -33,6 +34,9 @@ function iniciarSesion()
             firebase.auth().signInWithEmailAndPassword(strUser, strPassword).then(function (result)
             {
                 status = 1;
+//                user_id = result.user
+                
+                console.log(result);
                 window.location.href = "/mapx";
             }).catch(function (err)
             {
