@@ -30,7 +30,7 @@ function iniciarSesion()
     {
         if (!firebase.auth().currentUser)
         {
-            if (strUsuario === '' || strUsuario.trim === '' || strUsuario === null)
+            if (strUser === '' || strUser.trim === '' || strUser === null)
             {
                 setHtmlCmp("lbl_error", "ERROR! Usuario Inválido.");
             }
