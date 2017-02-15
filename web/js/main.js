@@ -43,8 +43,8 @@ function iniciarSesion()
                 }).catch(function (err)
                 {
                     console.log(err);
-                    cambiarClaseCmp("msg_error", "alert");
-                    visibilidadCmp("msg_error", 1);
+                    cambiarClaseCmp("lbl_error", "alert");
+                    visibilidadCmp("lbl_error", 1);
 
                     strCodigoError = err.code;
                     strMensajeError = err.message;
