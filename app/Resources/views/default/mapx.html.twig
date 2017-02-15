@@ -13,9 +13,9 @@
         </style>
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
         <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
-        <script src='/js/jquery.min.js'></script>
         <script src="/js/main.js"></script>        
         <script src="/js/commons.js"></script>
+        <script src='/js/jquery.min.js'></script>
         <script type="text/javascript">
 
             var map;
@@ -25,6 +25,7 @@
             {
                 if (user)
                 {
+                    console.log(user.email);
                     setHtmlCmp("user-name", user.email);
                 }
                 else
