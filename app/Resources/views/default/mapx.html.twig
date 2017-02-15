@@ -67,7 +67,9 @@
             }
 
             marcadorRef = firebase.database().ref().child(Entity_Markers);
-            marcadorRef.on("child_added", function (snapshot, prevChildKey)
+            
+            marcadorRef.orderByChild('uid').equalTo("FNnVuUe2DHYtjmluSPZGuFqFhir2").
+                    on("child_added", function (snapshot, prevChildKey)
             {
                 var t = snapshot.val();
                 var latLng = {lat: parseFloat(t.lat), lng: parseFloat(t.lon)};
