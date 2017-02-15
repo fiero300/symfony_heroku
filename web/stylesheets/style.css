@@ -209,7 +209,7 @@ html, body
 .alert 
 {
     padding: 20px;
-    background-color: tomato;
+    background-color: red;
     color: black;
 }
 
