@@ -20,7 +20,7 @@
 
             var map;
             var marcadores = new Object();
-            
+
             firebase.auth().onAuthStateChanged(function (user)
             {
                 if (user)
@@ -41,8 +41,7 @@
                     window.location.href = "/";
                 }
             });
-            console.log("user_id-> " + user_id);
-            
+
             function initMap()
             {
                 var myLatLng = {lat: -2.183004360911292, lng: -79.92313385009766};
@@ -67,8 +66,9 @@
                 var thingToRemove = document.getElementById(key);
                 thingToRemove.parentNode.removeChild(thingToRemove);
             }
-
-            marcadorRef = firebase.database().ref().child(Entity_Markers).equalTo(uid, 'uid');
+            user = firebase.auth().currentUser;
+            
+            marcadorRef = firebase.database().ref().child(Entity_Markers).equalTo(user.uid, 'uid');
             marcadorRef.on("child_added", function (snapshot, prevChildKey)
             {
                 var t = snapshot.val();
