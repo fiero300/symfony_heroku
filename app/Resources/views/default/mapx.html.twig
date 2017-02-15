@@ -12,6 +12,26 @@
             #map { height: 100%; }
         </style>
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
+         <style type="text/css">
+        table {
+    overflow: scroll;
+    display: block;    /*inline-block*/
+    height: 120px;
+}
+tr:nth-of-type(1) {
+    margin-top: 16px;
+}
+tr {
+    display: block;
+}
+
+td, th {
+    width: 70px;
+    border-style:solid;
+    border-width:1px;
+    border-color:black;
+}
+    </style>
         <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
         <script src='/js/jquery.min.js'></script>
         <script src="/js/main.js"></script>        
