@@ -86,7 +86,7 @@
 
                     <table border="0" class="tabla2">  
                         <tr height="50%">
-                            <td width="20%">
+                            <td width="30%">
                                 <table border="1" id="tblMarcadores" class="tableScroll"> 
                                 </table>
                             </td>
@@ -154,32 +154,32 @@
                                 row.class = "" + t.key;
                                 var cell1 = row.insertCell(0);
                                 var cell2 = row.insertCell(1);
-                                
+
                                 var str1 = "<table border='0' class='table2'>" +
-                                            "<tr>" +
-                                            "	<td >" +
-                                            "		Ubicación:" +
-                                            "	</td>" +
-                                            "	<td>" +
-                                            t.key +
-                                            "	</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "	<td>" +
-                                            "		Coordenadas:" +
-                                            "	</td>" +
-                                            "	<td>" +
-                                            t.lat +
-                                            "	</td>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                            "	<td>" +
-                                            "    </td>" +
-                                            "	<td>" +
-                                            t.lon +
-                                            "	</td>" +
-                                            "</tr>" +
-                                            "</table><br/><br/>";
+                                        "<tr>" +
+                                        "	<td >" +
+                                        "		Ubicación:" +
+                                        "	</td>" +
+                                        "	<td>" +
+                                        t.key +
+                                        "	</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "	<td>" +
+                                        "		Coordenadas:" +
+                                        "	</td>" +
+                                        "	<td>" +
+                                        t.lat +
+                                        "	</td>" +
+                                        "</tr>" +
+                                        "<tr>" +
+                                        "	<td>" +
+                                        "    </td>" +
+                                        "	<td>" +
+                                        t.lon +
+                                        "	</td>" +
+                                        "</tr>" +
+                                        "</table><br/><br/>";
 
                                 var str2 = "<a href='javascript:void(0);' " +
                                         "onclick='javascript:eliminarMarcador(\"" + t.key + "\");' " +
@@ -206,6 +206,9 @@
 
                         console.log("Se eliminará-> " + t.key);
                         delete marcadores[t.key];
+                        
+                        var thingToRemove = document.getElementById(t.key);
+                        thingToRemove.parentNode.removeChild(thingToRemove);
 
                         for (var k in marcadores)
                         {
