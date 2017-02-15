@@ -123,11 +123,14 @@
             </tr>
         </table>
         <script type="text/javascript">
+            var user_id = null;
             firebase.auth().onAuthStateChanged(function (user)
             {
                 if (user)
                 {
                     setHtmlCmp("user-name", user.email);
+                    user_id = user.uid;
+                    console.log(user_id);
                 }
                 else
                 {

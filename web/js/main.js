@@ -1,6 +1,5 @@
 var status = 0;
 
-var user_id                 = "";
 var Entity_Sites            = "SITIOS";
 var Entity_Markers          = "MARCADORES";
 var Entity_Markers_by_Sites = "MARCADORES_X_SITIO";
