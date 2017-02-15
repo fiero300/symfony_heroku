@@ -12,26 +12,6 @@
             #map { height: 100%; }
         </style>
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"></link>
-         <style type="text/css">
-        table {
-    overflow: scroll;
-    display: block;    /*inline-block*/
-    height: 120px;
-}
-tr:nth-of-type(1) {
-    margin-top: 16px;
-}
-tr {
-    display: block;
-}
-
-td, th {
-    width: 70px;
-    border-style:solid;
-    border-width:1px;
-    border-color:black;
-}
-    </style>
         <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
         <script src='/js/jquery.min.js'></script>
         <script src="/js/main.js"></script>        
@@ -107,7 +87,7 @@ td, th {
                     <table border="0" class="tabla2">  
                         <tr height="50%">
                             <td width="20%">
-                                <table border="1" id="tblMarcadores" class=""> 
+                                <table border="1" id="tblMarcadores" class="tableScroll"> 
                                 </table>
                             </td>
                             <td>
@@ -175,7 +155,7 @@ td, th {
                                 var cell1 = row.insertCell(0);
                                 var cell2 = row.insertCell(1);
                                 
-                                var str1 = "<table border='0' class='tabla2'>" +
+                                var str1 = "<table border='0' class='table2'>" +
                                             "<tr>" +
                                             "	<td >" +
                                             "		Ubicación:" +
