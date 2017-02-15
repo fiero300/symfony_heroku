@@ -206,11 +206,11 @@ html, body
     height:100%;
 }
 
-lert 
+.alert 
 {
     padding: 20px;
-    background-color: #f44336;
-    color: white;
+    background-color: deeppink;
+    color: black;
 }
 
 .alertOk 

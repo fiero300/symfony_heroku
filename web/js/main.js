@@ -28,6 +28,8 @@ function iniciarSesion()
 
     try
     {
+
+        visibilidadCmp("msg_error", 0);
         if (!firebase.auth().currentUser)
         {
             if (strUser === '' || strUser.trim === '' || strUser === null)
@@ -43,8 +45,7 @@ function iniciarSesion()
                 }).catch(function (err)
                 {
                     console.log(err);
-                    cambiarClaseCmp("lbl_error", "alert");
-                    visibilidadCmp("lbl_error", 1);
+                    visibilidadCmp("msg_error", 1);
 
                     strCodigoError = err.code;
                     strMensajeError = err.message;
