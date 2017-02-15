@@ -62,7 +62,7 @@
                 firebase.database().ref().update(updates);
 
                 console.log(key);
-                var thingToRemove = document.querySelectorAll(key)[0];
+                var thingToRemove = document.getElementById(key);
                 thingToRemove.parentNode.removeChild(thingToRemove);
             }
 
@@ -108,8 +108,6 @@
                 {
                     if (marcadores.hasOwnProperty(k))
                     {
-                        console.log("k-> " + k);
-                        console.log("marcadores[k]-> " + marcadores[k]);
                         marcadores[k].setMap(null);
                     }
                 }
