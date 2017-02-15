@@ -19,9 +19,8 @@
         <script type="text/javascript">
 
             var map;
-            var uid;
             var marcadores = new Object();
-            console.log("uid-> " + uid);
+            
             firebase.auth().onAuthStateChanged(function (user)
             {
                 if (user)
@@ -42,7 +41,7 @@
                     window.location.href = "/";
                 }
             });
-            console.log("uid-> " + uid);
+            console.log("user_id-> " + user_id);
             
             function initMap()
             {
@@ -69,7 +68,6 @@
                 thingToRemove.parentNode.removeChild(thingToRemove);
             }
 
-            console.log("uid-> " + uid);
             marcadorRef = firebase.database().ref().child(Entity_Markers).equalTo(uid, 'uid');
             marcadorRef.on("child_added", function (snapshot, prevChildKey)
             {
